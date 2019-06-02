@@ -1,0 +1,38 @@
+#vim:ft=cfg
+[global]
+    monitor = 0
+    geometry = "400x20-0+35"
+    indicate_hidden = yes
+    shrink = yes
+    transparency = 0
+    notification_height = 20
+    separator_height = 2
+    padding = 5
+    horizontal_padding = 5
+    frame_width = 1
+    frame_color = "#f8f8f2"
+    idle_threshold = 10
+    font = mononoki nerd font
+    line_height = 0
+    alignment = left
+    word_wrap = yes
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+
+[urgency_low]
+    background = "#272822"
+    foreground = "#f8f8f2"
+    timeout = 5
+
+[urgency_normal]
+    background = "#272822"
+    foreground = "#f8f8f2"
+    timeout = 5
+
+[urgency_critical]
+    background = "#272822"
+    foreground = "#f92672"
+    timeout = 0
