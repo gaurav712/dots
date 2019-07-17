@@ -6,7 +6,7 @@ set nocompatible
 
 " Plugins
 call plug#begin()
-    Plug 'tomasr/molokai'
+    Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -33,8 +33,8 @@ set termguicolors
 set background=dark
 
 " Color-Scheme
-colorscheme molokai
-let g:molokai_original = 1
+colorscheme gruvbox
+"let g:gruvbox_contrast_dark='hard'
 
 " Resume editing a file
 :au BufReadPost *
@@ -44,7 +44,5 @@ let g:molokai_original = 1
 
 " Syntax highlighting and filetype recognition
 syntax on
-filetype on
-filetype indent on
-filetype plugin on
+filetype indent plugin on
 
