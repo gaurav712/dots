@@ -3,7 +3,8 @@
 redshift &
 dunst &
 status_dwm &
-sudo cpupower frequency-set -u 0.8GHz &
+compton -b &
+sudo cpufreq 0.8 &
 xdotool key Num_Lock &
 sudo rfkill block wlan &
 sudo rfkill block bluetooth &
