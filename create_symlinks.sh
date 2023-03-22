@@ -8,6 +8,7 @@ declare -A links
 links[".tmux.conf"]="$HOME/.tmux.conf"
 links[".xinitrc"]="$HOME/.xinitrc"
 links[".bashrc"]="$HOME/.bashrc"
+links[".config/alacritty"]="$HOME/.config/alacritty"
 
 for key in "${!links[@]}"; do
   echo "ln -sf" "$(pwd)/$key" "${links[$key]}"
