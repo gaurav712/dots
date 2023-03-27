@@ -11,6 +11,7 @@ links[".bashrc"]="$HOME/.bashrc"
 links[".config/alacritty"]="$HOME/.config/alacritty"
 links[".config/dunst"]="$HOME/.config/dunst"
 links[".config/nvim"]="$HOME/.config/nvim"
+links[".config/picom.conf"]="$HOME/.config/picom.conf"
 
 for key in "${!links[@]}"; do
   echo "ln -sf" "$(pwd)/$key" "${links[$key]}"
