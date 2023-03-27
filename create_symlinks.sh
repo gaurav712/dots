@@ -12,6 +12,7 @@ links[".config/alacritty"]="$HOME/.config/alacritty"
 links[".config/dunst"]="$HOME/.config/dunst"
 links[".config/nvim"]="$HOME/.config/nvim"
 links[".config/picom.conf"]="$HOME/.config/picom.conf"
+links["bg.jpg"]="$HOME/.config/bg"
 
 for key in "${!links[@]}"; do
 
