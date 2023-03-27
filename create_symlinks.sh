@@ -14,7 +14,16 @@ links[".config/nvim"]="$HOME/.config/nvim"
 links[".config/picom.conf"]="$HOME/.config/picom.conf"
 
 for key in "${!links[@]}"; do
-  echo "ln -sf" "$(pwd)/$key" "${links[$key]}"
+
+  # Check if the directory exists
+  if [ -d "${links[$key]}" ]; then 
+    if [ -L "${links[$key]}" ]; then
+      unlink "${links[$key]}"
+    else
+      rm -rf "${links[$key]}"
+    fi
+  fi
+
   ln -sf "$(pwd)/$key" "${links[$key]}"
 done
 
