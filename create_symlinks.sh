@@ -44,6 +44,8 @@ fi
 
 for key in "${!links[@]}"; do
 
+  echo "Linking $(pwd)/$key -> ${links[$key]}"
+
   # Check if the directory exists
   if [ -d "${links[$key]}" ]; then 
     if [ -L "${links[$key]}" ]; then
