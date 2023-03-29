@@ -20,6 +20,9 @@ esac
 links[".config/nvim"]="$HOME/.config/nvim"
 
 if [ $machine == "Linux" ]; then
+
+  echo "Linux detected.."
+
   links[".tmux.conf"]="$HOME/.tmux.conf"
   links[".xinitrc"]="$HOME/.xinitrc"
   links[".bashrc"]="$HOME/.bashrc"
@@ -27,10 +30,15 @@ if [ $machine == "Linux" ]; then
   links[".config/dunst"]="$HOME/.config/dunst"
   links[".config/picom.conf"]="$HOME/.config/picom.conf"
   links["bg.jpg"]="$HOME/.config/bg"
+
 elif [ $machine == "Mac" ]; then
+
+  echo "MacOS detected.."
+
   links["mac/.tmux.conf"]="$HOME/.tmux.conf"
   links["mac/.config/alacritty"]="$HOME/.config/alacritty"
   links["bg.jpg"]="$HOME/Pictures/bg.jpg"
+
 fi
 
 
