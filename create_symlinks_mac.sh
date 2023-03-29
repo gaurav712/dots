@@ -6,6 +6,7 @@ declare -A links
 # Define the symlinks sources and targets
 
 links["mac/.tmux.conf"]="$HOME/.tmux.conf"
+links["mac/.config/alacritty"]="$HOME/.config/alacritty"
 links[".config/nvim"]="$HOME/.config/nvim"
 links["bg.jpg"]="$HOME/Pictures/bg.jpg"
 
