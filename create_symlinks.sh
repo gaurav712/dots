@@ -6,7 +6,7 @@
 bash_version=$(echo "echo \$BASH_VERSINFO" | bash)
 
 if ((bash_version < 4)); then
-  echo "You need at least bash 4.0 or higher to run this script!"
+  echo "You need bash 4.0 or higher to run this script!"
   exit 1
 fi
 
