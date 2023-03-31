@@ -10,6 +10,21 @@ if ((bash_version < 4)); then
   exit 1
 fi
 
+# Check flags
+r_flag=""
+
+print_usage() {
+  printf "\nUsage:\n\t$0 [FLAGS]\n\nFLAGS:\n-r\treverse (unlinks all the symlinks)\n\n"
+}
+
+while getopts 'rh' flag; do
+  case "${flag}" in
+    r) r_flag="true" ;;
+    h) print_usage
+       exit 1 ;;
+  esac
+done
+
 # create the dictionary
 declare -A links
 
@@ -51,6 +66,20 @@ elif [ $machine == "Mac" ]; then
 
 fi
 
+# Check if symlinks need to be removed on linked
+
+if [ $r_flag == "true" ]; then
+  echo "Unlinking the symlinks.."
+
+  for key in "${!links[@]}"; do
+    echo "${links[$key]}"
+    unlink "${links[$key]}"
+  done
+
+  exit 0
+fi
+
+# Create the links
 
 for key in "${!links[@]}"; do
 
