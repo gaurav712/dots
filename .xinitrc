@@ -10,5 +10,8 @@ xrandr --output HDMI-0 --mode 2560x1440
 start-pipewire
 picom -b
 
+# for theming QT applications
+export QT_QPA_PLATFORMTHEME=qt6ct
+
 # Window Manager
 exec startdwm
