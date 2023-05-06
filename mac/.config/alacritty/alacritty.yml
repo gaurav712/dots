@@ -3,8 +3,8 @@ env:
 
 window:
   padding:
-    x: 10
-    y: 2
+    x: 5
+    y: 0
   decorations: buttonless
 
   opacity: 1
@@ -28,18 +28,18 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: BlexMono Nerd Font Mono
-    style: Book
+    family: ComicCodeLigatures Nerd Font
+    style: Regular
   bold:
-    family: BlexMono Nerd Font Mono
+    family: ComicCodeLigatures Nerd Font
     style: Bold
   italic:
-    family: BlexMono Nerd Font Mono
+    family: ComicCodeLigatures Nerd Font
     style: Italic
   bold_italic:
-    family: BlexMono Nerd Font Mono
+    family: ComicCodeLigatures Nerd Font
     style: Bold Italic
-  size: 14.5
+  size: 14
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
