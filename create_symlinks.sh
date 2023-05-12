@@ -54,7 +54,7 @@ if [ $machine == "Linux" ]; then
   links[".config/alacritty"]="$HOME/.config/alacritty"
   links[".config/dunst"]="$HOME/.config/dunst"
   links[".config/picom.conf"]="$HOME/.config/picom.conf"
-  links["bg.jpg"]="$HOME/.config/bg"
+  links["bg.png"]="$HOME/.config/bg"
 
 elif [ $machine == "Mac" ]; then
 
@@ -63,7 +63,7 @@ elif [ $machine == "Mac" ]; then
   links["mac/.zshrc"]="$HOME/.zshrc"
   links["mac/.tmux.conf"]="$HOME/.tmux.conf"
   links["mac/.config/alacritty"]="$HOME/.config/alacritty"
-  links["bg.jpg"]="$HOME/Pictures/bg.jpg"
+  links["bg.png"]="$HOME/Pictures/bg.png"
 
 fi
 
