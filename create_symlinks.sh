@@ -61,6 +61,7 @@ elif [ $machine == "Mac" ]; then
   echo "MacOS detected.."
 
   links["mac/.zshrc"]="$HOME/.zshrc"
+  links["mac/.zprofile"]="$HOME/.zprofile"
   links["mac/.tmux.conf"]="$HOME/.tmux.conf"
   links["mac/.config/alacritty"]="$HOME/.config/alacritty"
   links["bg.png"]="$HOME/Pictures/bg.png"
