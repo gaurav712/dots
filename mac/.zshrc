@@ -28,5 +28,3 @@ precmd () {
   export PS1="anon@mac${vcs_info_msg_0_} %~ $ "
 }
 
-# To make node v18.0 the default
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
