@@ -5,9 +5,9 @@ window:
   dimensions:
     columns: 150
     lines: 35
-  #padding:
-  #x: 2
-  #y: 0
+  padding:
+    x: 5
+    y: 5
   #decorations: buttonless
 
   #opacity: 0.98
