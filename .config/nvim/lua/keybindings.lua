@@ -14,9 +14,6 @@ map('n', '<leader>ff', ':Telescope find_files<CR>')
 map('n', '<leader>fg', ':Telescope live_grep<CR>')
 map('n', '<leader>fb', ':Telescope buffers<CR>')
 
--- Lazygit
-map('n', '<leader>gg', ':LazyGit<CR>')
-
 -- TO launch Coc-explorer
 map('n', '<leader>e', ':CocCommand explorer<CR>')
 
