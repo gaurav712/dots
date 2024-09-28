@@ -29,20 +29,20 @@ TERM = "alacritty-direct"
 size = 13
 
 [font.bold]
-family = "ComicCodeLigatures Nerd Font"
-style = "Bold"
+family = "CaskaydiaCove Nerd Font"
+style = "SemiBold"
 
 [font.bold_italic]
-family = "ComicCodeLigatures Nerd Font"
-style = "Bold Italic"
+family = "CaskaydiaCove Nerd Font"
+style = "SemiBold Italic"
 
 [font.italic]
-family = "ComicCodeLigatures Nerd Font"
+family = "CaskaydiaCove Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "ComicCodeLigatures Nerd Font"
-style = "Regular"
+family = "CaskaydiaCove Nerd Font"
+style = "SemiLight"
 
 [[keyboard.bindings]]
 chars = "\u001Ba"
