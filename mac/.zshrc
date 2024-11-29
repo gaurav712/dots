@@ -28,7 +28,7 @@ precmd () {
   export PS1="anon@mac${vcs_info_msg_0_} %~ $ "
 }
 
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/node@20include"
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/node@18/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@18include"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
