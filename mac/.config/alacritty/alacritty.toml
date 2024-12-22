@@ -422,7 +422,7 @@ mods = "Alt|Shift"
 [scrolling]
 history = 0
 
-[shell]
+[terminal.shell]
 program = "/opt/homebrew/bin/tmux"
 
 [window]
@@ -432,3 +432,5 @@ opacity = 1
 [window.padding]
 x = 10
 y = 5
+
+[terminal]
