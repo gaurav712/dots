@@ -1,7 +1,7 @@
 autoload -Uz compinit && compinit
 
 #alias disable_spotlight='sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i off'
-alias emulator='~/Library/Android/sdk/emulator/emulator -avd Pixel_3a_API_34_extension_level_7_arm64-v8a'
+alias emulator='~/Library/Android/sdk/emulator/emulator -avd Pixel_8_API_35'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -l'
@@ -31,3 +31,4 @@ precmd () {
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
