@@ -36,6 +36,8 @@ o.shiftwidth = 0          -- Use the value of 'tabstop' for auto-indentation
 o.softtabstop = -1        -- If negative, use the value of 'shiftwidth' for <Tab>/<BS>
 o.list = true             -- Show invisible characters
 o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂' -- Define how invisible characters are displayed
+o.scrolloff = 8           -- Minimum number of lines to keep above and below the cursor
+o.sidescrolloff = 8       -- Minimum number of columns to keep left and right of the cursor
 
 -- Enable mouse support in all modes
 o.mouse = 'a'
