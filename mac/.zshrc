@@ -1,7 +1,7 @@
 autoload -Uz compinit && compinit
 
 #alias disable_spotlight='sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i off'
-alias emulator='~/Library/Android/sdk/emulator/emulator -avd Pixel_8_API_35'
+#alias emulator='~/Library/Android/sdk/emulator/emulator -avd Pixel_8_API_35'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -l'
@@ -26,7 +26,7 @@ precmd () {
   zstyle ':vcs_info:*' formats '(%b)' # git(main)
 
   # the prompt
-  export PS1="anon@mac${vcs_info_msg_0_} %~ $ "
+  export PS1="%n@%m${vcs_info_msg_0_} %~ $ "
 }
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
