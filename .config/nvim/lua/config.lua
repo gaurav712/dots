@@ -1,6 +1,9 @@
 local g = vim.g
 local o = vim.o
 
+o.fileencoding = 'utf-8' -- Use UTF-8 encoding for files
+o.fileformats = 'unix,dos,mac' -- Automatically detect line endings
+
 -- Enable 24-bit RGB color in the terminal (for better colors)
 o.termguicolors = true
 
