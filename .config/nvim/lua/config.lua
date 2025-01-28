@@ -39,6 +39,7 @@ o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂' -- Define ho
 o.scrolloff = 8           -- Minimum number of lines to keep above and below the cursor
 o.sidescrolloff = 8       -- Minimum number of columns to keep left and right of the cursor
 o.timeoutlen = 500        -- Time (ms) to wait for a mapped sequence to complete
+o.lazyredraw = true       -- Do not redraw the screen during macro execution
 
 -- Enable mouse support in all modes
 o.mouse = 'a'
