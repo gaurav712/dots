@@ -5,6 +5,7 @@ alias emulator='~/Library/Android/sdk/emulator/emulator -avd Pixel_8_API_35'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -l'
+alias upgrade='brew update && brew upgrade && brew autoremove && brew cleanup'
 
 function discache() {
 
@@ -32,3 +33,5 @@ export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+eval 
+TWILIO_AC_ZSH_SETUP_PATH=/Users/gaurav/.twilio-cli/autocomplete/zsh_setup && test -f $TWILIO_AC_ZSH_SETUP_PATH && source $TWILIO_AC_ZSH_SETUP_PATH;
