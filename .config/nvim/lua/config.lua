@@ -38,6 +38,7 @@ o.list = true             -- Show invisible characters
 o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂' -- Define how invisible characters are displayed
 o.scrolloff = 8           -- Minimum number of lines to keep above and below the cursor
 o.sidescrolloff = 8       -- Minimum number of columns to keep left and right of the cursor
+o.timeoutlen = 500        -- Time (ms) to wait for a mapped sequence to complete
 
 -- Enable mouse support in all modes
 o.mouse = 'a'
