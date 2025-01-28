@@ -21,6 +21,8 @@ o.relativenumber = true   -- Show relative line numbers (useful for navigation)
 o.signcolumn = 'yes:2'    -- Always show a 2-column wide sign column (for git, diagnostics, etc.)
 o.cursorline = true       -- Highlight the current line
 o.colorcolumn = '80'      -- Highlight column 80 (useful for line length limits)
+o.hlsearch = true         -- Highlight search matches
+o.incsearch = true        -- Show matches as you type
 
 -- Editing experience options
 o.expandtab = true        -- Use spaces instead of tabs
