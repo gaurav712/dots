@@ -57,3 +57,11 @@ o.splitbelow = true
 
 -- Reduce the time Neovim waits for a change (in milliseconds)
 o.updatetime = 300
+
+-- Highlight on yank
+vim.cmd([[
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup = "IncSearch", timeout = 300 }
+  augroup END
+]])
