@@ -1,8 +1,8 @@
 local g = vim.g
 local o = vim.o
 
-o.fileencoding = 'utf-8' -- Use UTF-8 encoding for files
-o.fileformats = 'unix,dos,mac' -- Automatically detect line endings
+o.fileencoding = 'utf-8'        -- Use UTF-8 encoding for files
+o.fileformats = 'unix,dos,mac'  -- Automatically detect line endings
 
 -- Enable 24-bit RGB color in the terminal (for better colors)
 o.termguicolors = true
@@ -67,6 +67,12 @@ o.splitbelow = true
 -- Reduce the time Neovim waits for a change (in milliseconds)
 o.updatetime = 300
 
+-- Use treesitter for code folding
+o.foldmethod = 'expr'
+o.foldexpr = 'nvim_treesitter#foldexpr()'
+o.foldenable = true       -- Ensure folding is enabled
+o.foldlevel = 99          -- Start with all folds open
+
 -- Highlight on yank
 vim.cmd([[
   augroup highlight_yank
@@ -77,5 +83,5 @@ vim.cmd([[
 
 -- Autocomplete
 o.completeopt = 'menuone,noinsert,noselect' -- Better completion menu experience
-o.shortmess = o.shortmess .. 'c' -- Avoid showing extra messages during completion
+o.shortmess = o.shortmess .. 'c'            -- Avoid showing extra messages during completion
 
