@@ -65,3 +65,8 @@ vim.cmd([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup = "IncSearch", timeout = 300 }
   augroup END
 ]])
+
+-- Autocomplete
+o.completeopt = 'menuone,noinsert,noselect' -- Better completion menu experience
+o.shortmess = o.shortmess .. 'c' -- Avoid showing extra messages during completion
+
