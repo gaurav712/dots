@@ -68,6 +68,9 @@ elif [ $machine == "Mac" ]; then
 
 fi
 
+# Configs common to both platforms
+links[".config/pip"]="$HOME/.config/pip"
+
 # Check if symlinks need to be removed on linked
 
 if [ $r_flag == "true" ]; then
