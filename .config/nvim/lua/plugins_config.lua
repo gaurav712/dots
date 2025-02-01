@@ -22,7 +22,48 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Fuzzy finder
-require('telescope').setup()
+require('telescope').setup({
+  defaults = {
+    -- configure to use ripgrep
+    vimgrep_arguments = {
+      "rg",
+      "--follow",        -- Follow symbolic links
+      "--hidden",        -- Search for hidden files
+      "--no-heading",    -- Don't group matches by each file
+      "--with-filename", -- Print the file path with the matched lines
+      "--line-number",   -- Show line numbers
+      "--column",        -- Show column numbers
+      "--smart-case",    -- Smart case search
+
+      -- Exclude some patterns from search
+      "--glob=!**/.git/*",
+      "--glob=!**/.idea/*",
+      "--glob=!**/.vscode/*",
+      "--glob=!**/build/*",
+      "--glob=!**/dist/*",
+      "--glob=!**/yarn.lock",
+      "--glob=!**/package-lock.json",
+    },
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+      -- when not included or specified in .gitignore
+      find_command = {
+        "rg",
+        "--files",
+        "--hidden",
+        "--glob=!**/.git/*",
+        "--glob=!**/.idea/*",
+        "--glob=!**/.vscode/*",
+        "--glob=!**/build/*",
+        "--glob=!**/dist/*",
+        "--glob=!**/yarn.lock",
+        "--glob=!**/package-lock.json",
+      },
+    },
+  },
+})
 require('telescope').load_extension('fzf')
 
 -- Git modifications sign
@@ -39,8 +80,8 @@ require('slanted')
 local keyset = vim.keymap.set
 -- Auto complete
 function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col ~= 0 or vim.fn.getline('.'):sub(col, col):match('%s')
+  local col = vim.fn.col('.') - 1
+  return col ~= 0 or vim.fn.getline('.'):sub(col, col):match('%s')
 end
 
 -- Use tab for trigger completion with characters ahead and navigate.
@@ -75,14 +116,14 @@ keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
 
 -- Use K to show documentation in preview window.
 function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
-        vim.api.nvim_command('h ' .. cw)
-    elseif vim.api.nvim_eval('coc#rpc#ready()') then
-        vim.fn.CocActionAsync('doHover')
-    else
-        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
-    end
+  local cw = vim.fn.expand('<cword>')
+  if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+    vim.api.nvim_command('h ' .. cw)
+  elseif vim.api.nvim_eval('coc#rpc#ready()') then
+    vim.fn.CocActionAsync('doHover')
+  else
+    vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+  end
 end
 keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
@@ -90,9 +131,9 @@ keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 -- Highlight the symbol and its references when holding the cursor.
 vim.api.nvim_create_augroup("CocGroup", {})
 vim.api.nvim_create_autocmd("CursorHold", {
-    group = "CocGroup",
-    command = "silent call CocActionAsync('highlight')",
-    desc = "Highlight symbol under cursor on CursorHold"
+  group = "CocGroup",
+  command = "silent call CocActionAsync('highlight')",
+  desc = "Highlight symbol under cursor on CursorHold"
 })
 
 
@@ -107,18 +148,18 @@ keyset("n", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
 
 -- Setup formatexpr specified filetype(s).
 vim.api.nvim_create_autocmd("FileType", {
-    group = "CocGroup",
-    pattern = "typescript,json",
-    command = "setl formatexpr=CocAction('formatSelected')",
-    desc = "Setup formatexpr specified filetype(s)."
+  group = "CocGroup",
+  pattern = "typescript,json",
+  command = "setl formatexpr=CocAction('formatSelected')",
+  desc = "Setup formatexpr specified filetype(s)."
 })
 
 -- Update signature help on jump placeholder.
 vim.api.nvim_create_autocmd("User", {
-    group = "CocGroup",
-    pattern = "CocJumpPlaceholder",
-    command = "call CocActionAsync('showSignatureHelp')",
-    desc = "Update signature help on jump placeholder"
+  group = "CocGroup",
+  pattern = "CocJumpPlaceholder",
+  command = "call CocActionAsync('showSignatureHelp')",
+  desc = "Update signature help on jump placeholder"
 })
 
 
@@ -158,9 +199,9 @@ local opts = {silent = true, nowait = true, expr = true}
 keyset("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 keyset("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
 keyset("i", "<C-f>",
-       'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
+'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
 keyset("i", "<C-b>",
-       'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
+'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
 keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
 

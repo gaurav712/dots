@@ -3,7 +3,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Gruvbox
-  --use 'morhetz/gruvbox'
   use 'sainnhe/gruvbox-material'
 
   -- Navigation integration with tmux
@@ -27,9 +26,6 @@ return require('packer').startup(function(use)
 
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-  -- File browser
-  --use { "nvim-telescope/telescope-file-browser.nvim" }
-
   -- Tabbar
   use {
     'romgrk/barbar.nvim',
@@ -50,4 +46,7 @@ return require('packer').startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+
+  -- AI Completion
+  use 'Exafunction/codeium.vim'
 end)
