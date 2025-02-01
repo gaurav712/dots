@@ -4,5 +4,7 @@
   "tsserver.maxTsServerMemory": 1024,
   "inlayHint.enable": false,
   "clangd.fallbackFlags": ["-std=c++20"],
-  "coc.preferences.formatOnSave": true
+  "coc.preferences.formatOnSave": true,
+  "explorer.width": 30,
+  "explorer.file.showHiddenFiles": true
 }
