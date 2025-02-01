@@ -73,6 +73,12 @@ require('gitsigns').setup()
 require('lualine').setup()
 require('slanted')
 
+-- Minimap
+g.minimap_width = 10
+g.minimap_auto_start = 1
+g.minimap_auto_start_win_enter = 1
+g.minimap_git_colors = 1
+
 -------------------
 -- Completion & LSP
 -------------------
