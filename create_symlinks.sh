@@ -70,6 +70,7 @@ fi
 
 # Configs common to both platforms
 links[".config/pip"]="$HOME/.config/pip"
+links[".config/helix"]="$HOME/.config/helix"
 
 # Check if symlinks need to be removed on linked
 
