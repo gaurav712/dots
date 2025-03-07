@@ -6,6 +6,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -l'
 alias upgrade='brew update && brew upgrade && brew autoremove && brew cleanup'
+alias delete_merged_branches='git branch --merged | grep -v "main\|master" | xargs git branch -d'
 
 function discache() {
 
