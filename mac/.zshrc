@@ -34,5 +34,3 @@ export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-eval 
-TWILIO_AC_ZSH_SETUP_PATH=/Users/gaurav/.twilio-cli/autocomplete/zsh_setup && test -f $TWILIO_AC_ZSH_SETUP_PATH && source $TWILIO_AC_ZSH_SETUP_PATH;
