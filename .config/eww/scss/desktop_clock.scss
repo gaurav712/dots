@@ -1,0 +1,29 @@
+.desktop_clock {
+  color: white;
+}
+
+.desktop_clock .month {
+  font-family: Anurati;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.desktop_clock .date {
+  font-family: Computerfont;
+  font-size: 2.5rem;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.desktop_clock .day {
+  font-size: 8rem;
+  font-family: Anurati;
+}
+
+.desktop_clock .time,
+.desktop_clock .weather,
+.desktop_clock .temp {
+  font-size: 3rem;
+  font-family: Computerfont;
+  margin-right: 0.5rem;
+}

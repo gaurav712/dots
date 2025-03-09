@@ -53,6 +53,7 @@ if [ $machine == "Linux" ]; then
   links[".bashrc"]="$HOME/.bashrc"
   links[".config/alacritty"]="$HOME/.config/alacritty"
   links[".config/dunst"]="$HOME/.config/dunst"
+  links[".config/eww"]="$HOME/.config/eww"
   links[".config/picom.conf"]="$HOME/.config/picom.conf"
   links["bg.jpg"]="$HOME/.config/bg"
 
