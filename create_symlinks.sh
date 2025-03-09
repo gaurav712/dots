@@ -57,6 +57,7 @@ if [ $machine == "Linux" ]; then
   links[".config/mpv"]="$HOME/.config/mpv"
   links[".config/redshift"]="$HOME/.config/redshift"
   links[".config/zathura"]="$HOME/.config/zathura"
+  links[".config/MangoHud"]="$HOME/.config/MangoHud"
   links[".config/picom.conf"]="$HOME/.config/picom.conf"
   links["bg.jpg"]="$HOME/.config/bg"
 
