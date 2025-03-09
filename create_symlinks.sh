@@ -49,6 +49,8 @@ if [ $machine == "Linux" ]; then
   links[".tmux.conf"]="$HOME/.tmux.conf"
   links[".xinitrc"]="$HOME/.xinitrc"
   links[".bashrc"]="$HOME/.bashrc"
+  links[".bash_profile"]="$HOME/.bash_profile"
+  links[".surf"]="$HOME/.surf"
   links[".config/alacritty"]="$HOME/.config/alacritty"
   links[".config/dunst"]="$HOME/.config/dunst"
   links[".config/eww"]="$HOME/.config/eww"
