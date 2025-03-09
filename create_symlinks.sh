@@ -42,8 +42,6 @@ esac
 
 # Define the symlinks sources and targets
 
-links[".config/nvim"]="$HOME/.config/nvim"
-
 if [ $machine == "Linux" ]; then
 
   echo "Linux detected.."
@@ -54,6 +52,9 @@ if [ $machine == "Linux" ]; then
   links[".config/alacritty"]="$HOME/.config/alacritty"
   links[".config/dunst"]="$HOME/.config/dunst"
   links[".config/eww"]="$HOME/.config/eww"
+  links[".config/mpv"]="$HOME/.config/mpv"
+  links[".config/redshift"]="$HOME/.config/redshift"
+  links[".config/zathura"]="$HOME/.config/zathura"
   links[".config/picom.conf"]="$HOME/.config/picom.conf"
   links["bg.jpg"]="$HOME/.config/bg"
 
@@ -72,6 +73,7 @@ fi
 # Configs common to both platforms
 links[".config/pip"]="$HOME/.config/pip"
 links[".config/helix"]="$HOME/.config/helix"
+links[".config/nvim"]="$HOME/.config/nvim"
 
 # Check if symlinks need to be removed on linked
 
