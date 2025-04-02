@@ -25,31 +25,4 @@ return require('packer').startup(function(use)
   }
 
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-
-  -- Tabbar
-  use {
-    'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
-
-  -- Statusline
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
-
-  -- Minimap
-  use {'wfxr/minimap.vim'}
-
-  -- Completion & LSP
-  use {'neoclide/coc.nvim', branch = 'release'}
-
-  -- Markdown Preview
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-
-  -- AI Completion
-  use 'Exafunction/codeium.vim'
 end)
