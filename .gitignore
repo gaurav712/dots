@@ -1,1 +1,4 @@
 .DS_Store
+.config/zed/prompts
+.config/zed/conversations
+.config/nvim/plugin
