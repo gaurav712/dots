@@ -26,23 +26,20 @@ foreground = "0xd4be98"
 TERM = "alacritty-direct"
 
 [font]
-size = 13
-
-[font.bold]
-family = "ComicCodeLigatures Nerd Font"
-style = "Bold"
-
-[font.bold_italic]
-family = "ComicCodeLigatures Nerd Font"
-style = "Bold Italic"
-
-[font.italic]
-family = "ComicCodeLigatures Nerd Font"
-style = "Italic"
+size = 16
+offset.y = 8
 
 [font.normal]
-family = "ComicCodeLigatures Nerd Font"
+family = "Consolas"
 style = "Regular"
+
+[font.italic]
+family = "Consolas"
+style = "Italic"
+
+[font.bold]
+family = "Consolas"
+style = "Bold"
 
 [[keyboard.bindings]]
 chars = "\u001Ba"
