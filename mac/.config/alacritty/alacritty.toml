@@ -27,19 +27,19 @@ TERM = "alacritty-direct"
 
 [font]
 size = 16
-offset.y = 8
+offset.y = 3
 
 [font.normal]
-family = "Consolas"
-style = "Regular"
+family = "JetBrainsMono Nerd Font Mono"
+style = "Thin"
 
 [font.italic]
-family = "Consolas"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Italic"
 
 [font.bold]
-family = "Consolas"
-style = "Bold"
+family = "JetBrainsMono Nerd Font Mono"
+style = "SemiBold"
 
 [[keyboard.bindings]]
 chars = "\u001Ba"
