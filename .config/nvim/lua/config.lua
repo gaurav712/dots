@@ -8,7 +8,7 @@ o.fileformats = 'unix,dos,mac'  -- Automatically detect line endings
 o.termguicolors = true
 
 -- Map the <leader> key to ';' (commonly used as a prefix for custom shortcuts)
-g.mapleader = ';'
+g.mapleader = ' '
 g.maplocalleader = ';'
 
 -- Allow switching between buffers without saving the current buffer

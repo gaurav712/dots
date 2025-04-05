@@ -10,10 +10,7 @@ map('i', '<leader>qq', '<ESC>:bw!<CR>')
 map('n', '<leader>h', ':noh<CR>')
 
 -- Telescope
-map('n', '<leader>ff', ':Telescope find_files<CR>')
-map('n', '<leader>fg', ':Telescope live_grep<CR>')
-map('n', '<leader>fb', ':Telescope buffers<CR>')
-
--- TO launch Coc-explorer
-map('n', '<leader>e', ':CocCommand explorer<CR>')
+map('n', '<leader>f', ':Telescope find_files<CR>')
+map('n', '<leader>/', ':Telescope live_grep<CR>')
+map('n', '<leader>b', ':Telescope buffers<CR>')
 
