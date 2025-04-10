@@ -26,12 +26,12 @@ foreground = "0xd4be98"
 TERM = "alacritty-direct"
 
 [font]
-size = 16
+size = 15
 offset.y = 3
 
 [font.normal]
 family = "JetBrainsMono Nerd Font Mono"
-style = "Thin"
+style = "Regular"
 
 [font.italic]
 family = "JetBrainsMono Nerd Font Mono"
