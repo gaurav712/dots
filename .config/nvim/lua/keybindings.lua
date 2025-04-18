@@ -4,7 +4,6 @@ end
 
 -- manage buffers
 map('n', '<leader>qq', ':bw!<CR>')
-map('i', '<leader>qq', '<ESC>:bw!<CR>')
 
 -- :noh on <leader>h
 map('n', '<leader>h', ':noh<CR>')
