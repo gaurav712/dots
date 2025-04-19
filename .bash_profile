@@ -1,9 +1,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export EDITOR="helix"
+export EDITOR="nvim"
 export PATH="$HOME/.local/bin:$HOME/.config/scripts:$PATH"
 
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec dbus-launch Hyprland
-fi
+alias undervolt_cpu="sudo amdctl -gmc 0 -v 84 -f 168 -p 0"
 
