@@ -27,4 +27,7 @@ return require('packer').startup(function(use)
 
   -- Statusline
   use {'nvim-lualine/lualine.nvim'}
+
+  -- File Explorer
+  use {"mikavilpas/yazi.nvim"}
 end)

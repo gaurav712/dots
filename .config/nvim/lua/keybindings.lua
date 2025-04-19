@@ -13,3 +13,5 @@ map('n', '<leader>f', ':Telescope find_files<CR>')
 map('n', '<leader>/', ':Telescope live_grep<CR>')
 map('n', '<leader>b', ':Telescope buffers<CR>')
 
+-- File Explorer
+map('n', '<leader>e', ':Yazi<CR>')

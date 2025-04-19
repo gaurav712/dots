@@ -78,6 +78,7 @@ links[".config/pip"]="$HOME/.config/pip"
 links[".config/helix"]="$HOME/.config/helix"
 links[".config/zed"]="$HOME/.config/zed"
 links[".config/nvim"]="$HOME/.config/nvim"
+links[".config/yazi"]="$HOME/.config/yazi"
 
 # Check if symlinks need to be removed on linked
 
