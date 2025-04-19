@@ -68,3 +68,6 @@ require('telescope').load_extension('fzf')
 -- Git modifications sign
 require('gitsigns').setup()
 
+-- Statusline
+require('lualine').setup()
+

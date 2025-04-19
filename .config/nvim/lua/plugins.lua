@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+  -- Statusline
+  use {'nvim-lualine/lualine.nvim'}
 end)
