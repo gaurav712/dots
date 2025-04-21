@@ -53,28 +53,51 @@ vim.lsp.config["clangd"] = {
 
 vim.lsp.enable("clangd")
 
-vim.o.completeopt = "menu,noinsert,popup,fuzzy"
+vim.o.completeopt = "menu,noinsert,popup,fuzzy,noselect"
 
 local pumMaps = {
   ['<Tab>'] = '<C-n>',
   ['<S-Tab>'] = '<C-p>',
-  ['<CR>'] = '<C-y>',
+  ['<CR>'] = function()
+    if vim.fn.pumvisible() == 1 then
+      if vim.fn.complete_info().selected == -1 then
+        return '<C-e><CR>'  -- Close popup and create new line if no item selected
+      end
+      return '<C-y>'  -- Confirm selection if an item is selected
+    end
+    return '<CR>'  -- Normal enter behavior when popup is not visible
+  end
 }
 
 for insertKmap, pumKmap in pairs(pumMaps) do
   vim.keymap.set('i', insertKmap, function()
+    if type(pumKmap) == 'function' then
+      return pumKmap()
+    end
     return vim.fn.pumvisible() == 1 and pumKmap or insertKmap
   end, { expr = true })
 end
----]]
 
+-- Create the lsp keymaps only when a language server is active
 vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = {buffer = event.buf}
+
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
     -- Show diagnostics on hover
     vim.api.nvim_create_autocmd("CursorHold", {
-      buffer = args.buf,
+      buffer = event.buf,
       callback = function()
         local opts = {
           focusable = false,
@@ -93,20 +116,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.o.updatetime = 200
 
     -- Code required to activate autocompletion and trigger it on each keypress
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
     client.server_capabilities.completionProvider.triggerCharacters = vim.split("qwertyuiopasdfghjklzxcvbnm. ", "")
     vim.api.nvim_create_autocmd({ 'TextChangedI' }, {
-      buffer = args.buf,
+      buffer = event.buf,
       callback = function()
         vim.lsp.completion.get()
       end
     })
-    vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
 
     -- Code required to add documentation popup for an item
     local _, cancel_prev = nil, function() end
     vim.api.nvim_create_autocmd('CompleteChanged', {
-      buffer = args.buf,
+      buffer = event.buf,
       callback = function()
         cancel_prev()
         local info = vim.fn.complete_info({ 'selected' })
@@ -114,7 +137,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if nil == completionItem then
           return
         end
-        _, cancel_prev = vim.lsp.buf_request(args.buf,
+        _, cancel_prev = vim.lsp.buf_request(event.buf,
           vim.lsp.protocol.Methods.completionItem_resolve,
           completionItem,
           function(err, item, ctx)
