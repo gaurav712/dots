@@ -30,4 +30,7 @@ return require('packer').startup(function(use)
 
   -- File Explorer
   use {"mikavilpas/yazi.nvim"}
+
+  -- Markdown
+  use 'MeanderingProgrammer/render-markdown.nvim'
 end)
