@@ -2,7 +2,7 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
--- manage buffers
+-- Close buffer
 map('n', '<leader>qq', ':bw!<CR>')
 
 -- :noh on <leader>h

@@ -33,4 +33,28 @@ return require('packer').startup(function(use)
 
   -- Markdown
   use 'MeanderingProgrammer/render-markdown.nvim'
+
+  -- Completion
+  use {
+    'saghen/blink.cmp',
+    requires = { 'rafamadriz/friendly-snippets' },
+
+    config = function()
+      require('blink.cmp').setup({
+        keymap = { preset = 'default' },
+
+        completion = {
+          documentation = { auto_show = false },
+        },
+
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+
+        fuzzy = {
+          implementation = "prefer_rust_with_warnings",
+        },
+      })
+    end
+  }
 end)
