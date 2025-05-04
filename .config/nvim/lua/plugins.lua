@@ -38,6 +38,7 @@ return require('packer').startup(function(use)
   use {
     'saghen/blink.cmp',
     requires = { 'rafamadriz/friendly-snippets' },
+    tag = '*',
 
     config = function()
       require('blink.cmp').setup({
@@ -52,7 +53,7 @@ return require('packer').startup(function(use)
         },
 
         fuzzy = {
-          implementation = "prefer_rust_with_warnings",
+          implementation = "rust",
         },
       })
     end
