@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
         keymap = { preset = 'default' },
 
         completion = {
-          documentation = { auto_show = false },
+          documentation = { auto_show = true },
         },
 
         sources = {
