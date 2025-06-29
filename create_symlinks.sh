@@ -1,13 +1,9 @@
 #!/bin/bash
 
-# Check bash version
-# as dictionaries are only supported with bash 4.0+
-
-bash_version=$(echo "echo \$BASH_VERSINFO" | bash)
-
-if ((bash_version < 4)); then
-  echo "You need bash 4.0 or higher to run this script!"
-  exit 1
+# Ensure .config directory exists
+if [ ! -d "$HOME/.config" ]; then
+  echo "Creating $HOME/.config directory..."
+  mkdir -p "$HOME/.config"
 fi
 
 # Check flags
@@ -25,9 +21,6 @@ while getopts 'rh' flag; do
   esac
 done
 
-# create the dictionary
-declare -A links
-
 # Check OS
 # 
 # Credits to https://stackoverflow.com/users/14860/paxdiablo for this snippet
@@ -40,54 +33,126 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
+# Initialize parallel arrays for sources and targets
+sources=()
+targets=()
+
 # Define the symlinks sources and targets
 
-if [ $machine == "Linux" ]; then
+if [ "$machine" = "Linux" ]; then
 
   echo "Linux detected.."
 
-  links[".tmux.conf"]="$HOME/.tmux.conf"
-  links[".xinitrc"]="$HOME/.xinitrc"
-  links[".bashrc"]="$HOME/.bashrc"
-  links[".bash_profile"]="$HOME/.bash_profile"
-  links[".surf"]="$HOME/.surf"
-  links[".config/alacritty"]="$HOME/.config/alacritty"
-  links[".config/dunst"]="$HOME/.config/dunst"
-  links[".config/eww"]="$HOME/.config/eww"
-  links[".config/mpv"]="$HOME/.config/mpv"
-  links[".config/redshift"]="$HOME/.config/redshift"
-  links[".config/zathura"]="$HOME/.config/zathura"
-  links[".config/MangoHud"]="$HOME/.config/MangoHud"
-  links[".config/picom.conf"]="$HOME/.config/picom.conf"
-  links["bg.jpg"]="$HOME/.config/bg"
+  # tmux
+  sources+=(".tmux.conf")
+  targets+=("$HOME/.tmux.conf")
 
-elif [ $machine == "Mac" ]; then
+  # X11
+  sources+=(".xinitrc")
+  targets+=("$HOME/.xinitrc")
+
+  # bash
+  sources+=(".bashrc")
+  targets+=("$HOME/.bashrc")
+
+  sources+=(".bash_profile")
+  targets+=("$HOME/.bash_profile")
+
+  # surf browser
+  sources+=(".surf")
+  targets+=("$HOME/.surf")
+
+  # alacritty terminal
+  sources+=(".config/alacritty")
+  targets+=("$HOME/.config/alacritty")
+
+  # dunst notifications
+  sources+=(".config/dunst")
+  targets+=("$HOME/.config/dunst")
+
+  # eww widgets
+  sources+=(".config/eww")
+  targets+=("$HOME/.config/eww")
+
+  # mpv media player
+  sources+=(".config/mpv")
+  targets+=("$HOME/.config/mpv")
+
+  # redshift color temperature
+  sources+=(".config/redshift")
+  targets+=("$HOME/.config/redshift")
+
+  # zathura PDF viewer
+  sources+=(".config/zathura")
+  targets+=("$HOME/.config/zathura")
+
+  # MangoHud overlay
+  sources+=(".config/MangoHud")
+  targets+=("$HOME/.config/MangoHud")
+
+  # picom compositor
+  sources+=(".config/picom.conf")
+  targets+=("$HOME/.config/picom.conf")
+
+  # background image
+  sources+=("bg.jpg")
+  targets+=("$HOME/.config/bg")
+
+elif [ "$machine" = "Mac" ]; then
 
   echo "MacOS detected.."
 
-  links["mac/.zshrc"]="$HOME/.zshrc"
-  links["mac/.zprofile"]="$HOME/.zprofile"
-  links["mac/.tmux.conf"]="$HOME/.tmux.conf"
-  links["mac/.config/alacritty"]="$HOME/.config/alacritty"
-  links["bg.jpg"]="$HOME/Pictures/bg.jpg"
+  # zsh shell
+  sources+=("mac/.zshrc")
+  targets+=("$HOME/.zshrc")
+
+  sources+=("mac/.zprofile")
+  targets+=("$HOME/.zprofile")
+
+  # tmux
+  sources+=("mac/.tmux.conf")
+  targets+=("$HOME/.tmux.conf")
+
+  # alacritty terminal
+  sources+=("mac/.config/alacritty")
+  targets+=("$HOME/.config/alacritty")
+
+  # background image
+  sources+=("bg.jpg")
+  targets+=("$HOME/Pictures/bg.jpg")
 
 fi
 
 # Configs common to both platforms
-links[".config/pip"]="$HOME/.config/pip"
-links[".config/helix"]="$HOME/.config/helix"
-links[".config/zed"]="$HOME/.config/zed"
-links[".config/nvim"]="$HOME/.config/nvim"
-links[".config/yazi"]="$HOME/.config/yazi"
+
+# pip package manager
+sources+=(".config/pip")
+targets+=("$HOME/.config/pip")
+
+# helix editor
+sources+=(".config/helix")
+targets+=("$HOME/.config/helix")
+
+# zed editor
+sources+=(".config/zed")
+targets+=("$HOME/.config/zed")
+
+# neovim editor
+sources+=(".config/nvim")
+targets+=("$HOME/.config/nvim")
+
+# yazi file manager
+sources+=(".config/yazi")
+targets+=("$HOME/.config/yazi")
 
 # Check if symlinks need to be removed on linked
 
-if [ $r_flag == "true" ]; then
+if [ "$r_flag" = "true" ]; then
   echo "Unlinking the symlinks.."
 
-  for key in "${!links[@]}"; do
-    echo "${links[$key]}"
-    unlink "${links[$key]}"
+  for i in "${!sources[@]}"; do
+    echo "${targets[$i]}"
+    unlink "${targets[$i]}"
   done
 
   exit 0
@@ -95,19 +160,19 @@ fi
 
 # Create the links
 
-for key in "${!links[@]}"; do
+for i in "${!sources[@]}"; do
 
-  echo "Linking $(pwd)/$key -> ${links[$key]}"
+  echo "Linking $(pwd)/${sources[$i]} -> ${targets[$i]}"
 
   # Check if the directory exists
-  if [ -d "${links[$key]}" ]; then 
-    if [ -L "${links[$key]}" ]; then
-      unlink "${links[$key]}"
+  if [ -d "${targets[$i]}" ]; then 
+    if [ -L "${targets[$i]}" ]; then
+      unlink "${targets[$i]}"
     else
-      rm -rf "${links[$key]}"
+      rm -rf "${targets[$i]}"
     fi
   fi
 
-  ln -sf "$(pwd)/$key" "${links[$key]}"
+  ln -sf "$(pwd)/${sources[$i]}" "${targets[$i]}"
 done
 
