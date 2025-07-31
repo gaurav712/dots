@@ -15,9 +15,6 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use {'lewis6991/gitsigns.nvim'}
 
-  -- Treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
