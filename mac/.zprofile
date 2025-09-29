@@ -10,3 +10,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+
+# Userspace utils
+export PATH=$PATH:$HOME/.local/bin
