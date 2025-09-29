@@ -60,3 +60,5 @@ require('gitsigns').setup()
 -- Statusline
 require('lualine').setup()
 
+-- Markdown Preview
+g.mkdp_auto_start = 0

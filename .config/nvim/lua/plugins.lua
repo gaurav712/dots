@@ -28,6 +28,12 @@ return require('packer').startup(function(use)
   -- File Explorer
   use {"mikavilpas/yazi.nvim"}
 
+  -- Markdown
+  use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
   -- Completion
   use {
     'saghen/blink.cmp',
