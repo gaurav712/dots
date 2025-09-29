@@ -121,6 +121,10 @@ elif [ "$machine" = "Mac" ]; then
   sources+=("mac/Library/Application Support/Leader Key")
   targets+=("$HOME/Library/Application Support/Leader Key")
 
+  # local scripts
+  sources+=("mac/.local/bin")
+  targets+=("$HOME/.local/bin")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/Pictures/bg.jpg")

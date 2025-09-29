@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Notes Launcher Script
+# Lists note files and launches them with Neovim
+
+# Configure your note directories here (one per line)
+NOTE_DIRS=(
+    "~/Documents/Scratchpad"
+)
+
+# Terminal and editor configuration
+TERM="alacritty"
+TEXT_EDITOR="nvim"
+
+# Initialize arrays
+notes=""
+note_paths=""
+
+# Function to scan for note files
+scan_notes() {
+    for dir in "${NOTE_DIRS[@]}"; do
+        # Expand ~ to home directory
+        expanded_dir="${dir/#\~/$HOME}"
+        if [ -d "$expanded_dir" ]; then
+            # Find all files recursively (not directories)
+            for note_path in $(find "$expanded_dir" -type f \( -name "*.md" -o -name "*.txt" -o -name "*.org" -o -name "*.rst" -o -name "*.log" \)); do
+                if [ -f "$note_path" ]; then
+                    # Get relative path from the note directory for cleaner display
+                    relative_path="${note_path#$expanded_dir/}"
+                    note_name="$relative_path"
+                    notes="$notes$note_name\n"
+                    note_paths="$note_paths$note_name|$note_path\n"
+                fi
+            done
+        fi
+    done
+}
+
+# Main execution
+main() {
+    # Scan for notes
+    scan_notes
+    
+    if [ -z "$notes" ]; then
+        exit 1
+    fi
+    
+    # Select note using mac-menu
+    selected_note=$(printf "$notes" | mac-menu)
+    
+    if [ -z "$selected_note" ]; then
+        exit 0
+    fi
+    
+    # Get note path
+    note_path=$(printf "$note_paths" | grep "^$selected_note|" | cut -d'|' -f2)
+    
+    if [ -z "$note_path" ]; then
+        exit 1
+    fi
+    
+    # Launch Neovim with the selected note file
+    $TERM -e $TEXT_EDITOR "$note_path"
+}
+
+# Run main function
+main "$@"

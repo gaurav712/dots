@@ -1,0 +1,101 @@
+#!/bin/sh
+
+# Simple Project Launcher Script
+# Lists projects and launches them with specified text editor
+
+# Configure your project directories here (one per line)
+PROJECT_DIRS=(
+    "~/Projects"
+)
+
+# Configure your available text editors here
+TERM="alacritty"
+TEXT_EDITORS=(
+    "Zed|open -a zed"
+    "Cursor|open -a Cursor"
+    "Xcode|open -a Xcode"
+    "Neovim|nvim"
+)
+
+# Initialize arrays
+projects=""
+project_paths=""
+
+# Function to scan for projects
+scan_projects() {
+    for dir in "${PROJECT_DIRS[@]}"; do
+        # Expand ~ to home directory
+        expanded_dir="${dir/#\~/$HOME}"
+        if [ -d "$expanded_dir" ]; then
+            # Simple ls of the directory
+            for project_name in "$expanded_dir"/*; do
+                if [ -d "$project_name" ]; then
+                    project_name=$(basename "$project_name")
+                    projects="$projects$project_name\n"
+                    project_paths="$project_paths$project_name|$expanded_dir/$project_name\n"
+                fi
+            done
+        fi
+    done
+}
+
+# Main execution
+main() {
+    # Scan for projects
+    scan_projects
+    
+    if [ -z "$projects" ]; then
+        exit 1
+    fi
+    
+    # Select project using mac-menu
+    selected_project=$(printf "$projects" | mac-menu)
+    
+    if [ -z "$selected_project" ]; then
+        exit 0
+    fi
+    
+    # Get project path
+    project_path=$(printf "$project_paths" | grep "^$selected_project|" | cut -d'|' -f2)
+    
+    if [ -z "$project_path" ]; then
+        exit 1
+    fi
+    
+    # Build editor list
+    editors=""
+    editor_commands=""
+    for editor_config in "${TEXT_EDITORS[@]}"; do
+        IFS='|' read -r editor_name editor_cmd <<< "$editor_config"
+        editors="$editors$editor_name\n"
+        editor_commands="$editor_commands$editor_name|$editor_cmd\n"
+    done
+    
+    # Select editor using mac-menu
+    selected_editor=$(printf "$editors" | mac-menu)
+    
+    if [ -z "$selected_editor" ]; then
+        exit 0
+    fi
+    
+    # Get editor command
+    editor_cmd=$(printf "$editor_commands" | grep "^$selected_editor|" | cut -d'|' -f2)
+    
+    if [ -z "$editor_cmd" ]; then
+        exit 1
+    fi
+    
+    # Launch the editor with the selected project
+    editor_cmd="${editor_cmd//PROJECT_PATH/$project_path}"
+
+    # For GUI editors, add project path as argument
+    if [[ "$editor_cmd" == "open -a "* ]]; then
+        $editor_cmd "$project_path"
+    else
+        # For terminal editors, launch terminal in project directory with editor
+        $TERM --working-directory "$project_path" -e $editor_cmd
+    fi
+}
+
+# Run main function
+main "$@"

@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Initialize arrays
+apps=""
+app_paths=""
+
+# System Applications
+if [ -d "/System/Applications" ]; then
+    for app in /System/Applications/*.app; do
+        if [ -d "$app" ]; then
+            app_name=$(basename "$app" .app)
+            apps="$apps$app_name\n"
+            app_paths="$app_paths$app_name|$app\n"
+        fi
+    done
+fi
+
+# System Utilities
+if [ -d "/System/Applications/Utilities" ]; then
+    for app in /System/Applications/Utilities/*.app; do
+        if [ -d "$app" ]; then
+            app_name=$(basename "$app" .app)
+            apps="$apps$app_name\n"
+            app_paths="$app_paths$app_name|$app\n"
+        fi
+    done
+fi
+
+# User Applications
+if [ -d "/Applications" ]; then
+    for app in /Applications/*.app; do
+        if [ -d "$app" ]; then
+            app_name=$(basename "$app" .app)
+            apps="$apps$app_name\n"
+            app_paths="$app_paths$app_name|$app\n"
+        fi
+    done
+fi
+
+# Home Applications (if they exist)
+if [ -d "$HOME/Applications" ]; then
+    for app in "$HOME/Applications"/*.app; do
+        if [ -d "$app" ]; then
+            app_name=$(basename "$app" .app)
+            apps="$apps$app_name\n"
+            app_paths="$app_paths$app_name|$app\n"
+        fi
+    done
+fi
+
+# Use mac-menu to select application
+selected_app=$(printf "$apps" | mac-menu)
+
+if [ -n "$selected_app" ]; then
+    printf "$app_paths" | cut -d'|' -f1 | sort
+
+    # Find the full path for the selected app
+    selected_path=$(printf "$app_paths" | grep -i "^$selected_app|" | cut -d'|' -f2)
+    
+    if [ -n "$selected_path" ]; then
+        open "$selected_path"
+    fi
+else
+    echo "No application selected"
+fi
