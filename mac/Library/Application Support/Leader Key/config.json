@@ -1,0 +1,41 @@
+{
+  "actions" : [
+    {
+      "actions" : [
+        {
+          "key" : "s",
+          "type" : "application",
+          "value" : "/Applications/Safari.app"
+        },
+        {
+          "key" : "b",
+          "type" : "application",
+          "value" : "/Applications/Brave Browser.app"
+        }
+      ],
+      "key" : "b",
+      "type" : "group"
+    },
+    {
+      "key" : "t",
+      "type" : "application",
+      "value" : "/Applications/Alacritty.app"
+    },
+    {
+      "key" : "a",
+      "type" : "command",
+      "value" : "~/.local/bin/launcher"
+    },
+    {
+      "key" : "p",
+      "type" : "command",
+      "value" : "~/.local/bin/open_project"
+    },
+    {
+      "key" : "n",
+      "type" : "command",
+      "value" : "~/.local/bin/open_note"
+    }
+  ],
+  "type" : "group"
+}

@@ -117,6 +117,10 @@ elif [ "$machine" = "Mac" ]; then
   sources+=("mac/.config/alacritty")
   targets+=("$HOME/.config/alacritty")
 
+  # leader key
+  sources+=("mac/Library/Application Support/Leader Key")
+  targets+=("$HOME/Library/Application Support/Leader Key")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/Pictures/bg.jpg")
