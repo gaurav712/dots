@@ -79,7 +79,7 @@ spawn-at-startup "waybar"
 spawn-at-startup "start-xdg-desktop-portal"
 spawn-at-startup "syncthing"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-spawn-sh-at-startup "keypress-listener >> ~/log.txt"
+spawn-sh-at-startup "keypress-listener"
 
 spawn-sh-at-startup "sudo brightnessctl set 20%"
 spawn-sh-at-startup "swww img ~/config/bg"
