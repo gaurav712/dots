@@ -29,19 +29,19 @@ TERM = "alacritty-direct"
 size = 12
 
 [font.bold]
-family = "ComicCodeLigatures Nerd Font"
+family = "CodeNewRomanNerdFontMono"
 style = "Bold"
 
 [font.bold_italic]
-family = "ComicCodeLigatures Nerd Font"
+family = "CodeNewRomanNerdFontMono"
 style = "Bold Italic"
 
 [font.italic]
-family = "ComicCodeLigatures Nerd Font"
+family = "CodeNewRomanNerdFontMono"
 style = "Medium Italic"
 
 [font.normal]
-family = "ComicCodeLigatures Nerd Font"
+family = "CodeNewRomanNerdFontMono"
 style = "Regular"
 
 [scrolling]
