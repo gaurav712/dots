@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Get focused window title using niri msg
+window_info=$(niri msg focused-window 2>/dev/null)
+
+if [ $? -ne 0 ]; then
+    echo '{"text": ""}'
+    exit 0
+fi
+
+# Extract title from text output
+title=$(echo "$window_info" | grep "Title:" | sed 's/Title: "//' | sed 's/"$//' | sed 's/^ *//')
+
+if [ -z "$title" ]; then
+    title=""
+fi
+
+# Truncate title if too long
+if [ ${#title} -gt 100 ]; then
+    title="${title:0:100}..."
+fi
+
+echo "{\"text\": \"$title\"}"

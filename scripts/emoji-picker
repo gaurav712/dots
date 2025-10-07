@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# It lets you intuitively select emojis and copy them to clipboard
+# Requires :    1. dmenu
+#               2. xclip
+#               3. the "emoji" file in the same directory as this script
+
+selection=$(cat ~/.local/bin/emoji | wofi -d -p emoji -l 15 | awk '{print $1}' &)
+[[ -z $selection ]] && notify-send ":( Nothing Entered" && exit 1
+printf "$selection" | wl-copy && notify-send "$selection copied to clipboard!" && exit 0

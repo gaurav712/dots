@@ -94,6 +94,10 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/picom.conf")
   targets+=("$HOME/.config/picom.conf")
 
+  # linux scripts
+  sources+=("scripts")
+  targets+=("$HOME/.local/bin")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")

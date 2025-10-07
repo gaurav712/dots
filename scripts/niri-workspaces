@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Get niri workspaces using niri msg
+workspaces=$(niri msg workspaces 2>/dev/null)
+
+if [ $? -ne 0 ]; then
+    echo '{"text": "󰅴", "tooltip": "Niri not running"}'
+    exit 0
+fi
+
+# Parse workspaces in one pass - extract active workspace and build display
+active_workspace=""
+workspace_text=""
+
+while IFS= read -r line; do
+    # Check if this line contains a workspace number
+    if [[ $line =~ ^[[:space:]]*\*?[[:space:]]*([0-9]+) ]]; then
+        ws="${BASH_REMATCH[1]}"
+        # Check if this is the active workspace (has asterisk)
+        if [[ $line =~ ^[[:space:]]*\* ]]; then
+            active_workspace="$ws"
+            workspace_text="${workspace_text}●"
+        else
+            workspace_text="${workspace_text}○"
+        fi
+    fi
+done <<< "$workspaces"
+
+echo "{\"text\": \"$workspace_text\", \"tooltip\": \"Active: $active_workspace\"}"
