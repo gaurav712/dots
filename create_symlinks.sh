@@ -98,6 +98,22 @@ if [ "$machine" = "Linux" ]; then
   sources+=("scripts")
   targets+=("$HOME/.local/bin")
 
+  # wofi
+  sources+=(".config/wofi")
+  targets+=("$HOME/.config/wofi")
+
+  # niri
+  sources+=(".config/niri")
+  targets+=("$HOME/.config/niri")
+
+  # swaylock
+  sources+=(".config/swaylock")
+  targets+=("$HOME/.config/swaylock")
+
+  # waybar
+  sources+=(".config/waybar")
+  targets+=("$HOME/.config/waybar")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")

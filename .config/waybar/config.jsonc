@@ -1,0 +1,35 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "margin": "5px 5px 0px 5px",
+  "modules-left": ["custom/workspaces", "custom/window-title"],
+  "modules-right": ["custom/status", "tray"],
+
+  "custom/workspaces": {
+    "format": "{}",
+    "exec": "~/.local/bin/niri-workspaces",
+    "return-type": "json",
+    "interval": 1
+  },
+
+  "custom/window-title": {
+    "format": "{}",
+    "exec": "~/.local/bin/niri-window-title",
+    "return-type": "json",
+    "interval": 1
+  },
+
+  "custom/status": {
+    "format": "{}",
+    "exec": "status",
+    "return-type": "string",
+    "interval": 1
+  },
+
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10
+  }
+}
