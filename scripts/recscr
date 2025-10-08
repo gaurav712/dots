@@ -1,0 +1,2 @@
+#!/bin/sh
+ffmpeg -y -device /dev/dri/card1 -f kmsgrab -i - -vf 'hwmap=derive_device=vaapi,scale_vaapi=format=nv12' -c:v hevc_vaapi -qp 24 "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mkv"
