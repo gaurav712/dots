@@ -45,7 +45,7 @@ window#waybar {
 
 /* Tray styling */
 #tray {
-  background-color: transparent;
+  margin-left: 10px;
 }
 
 #tray > .passive {
@@ -54,7 +54,6 @@ window#waybar {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: #cc241d;
 }
 
 /* Tooltip styling */
