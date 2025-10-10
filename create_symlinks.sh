@@ -114,6 +114,10 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/waybar")
   targets+=("$HOME/.config/waybar")
 
+  # mako
+  sources+=(".config/mako")
+  targets+=("$HOME/.config/mako")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")
