@@ -255,4 +255,11 @@ binds {
   Ctrl+Alt+Delete { quit; }
 
   Mod+Shift+P { power-off-monitors; }
+
+  XF86AudioMute { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
+  XF86AudioLowerVolume { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ -10%"; }
+  XF86AudioRaiseVolume { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ +10%"; }
+  XF86AudioMicMute { spawn-sh "pactl set-source-mute @DEFAULT_SOURCE@ toggle"; }
+  XF86MonBrightnessDown { spawn-sh "sudo brightnessctl set 5%-"; }
+  XF86MonBrightnessUp { spawn-sh "sudo brightnessctl set +5%"; }
 }
