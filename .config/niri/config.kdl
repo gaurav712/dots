@@ -262,4 +262,9 @@ binds {
   XF86AudioMicMute { spawn-sh "pactl set-source-mute @DEFAULT_SOURCE@ toggle"; }
   XF86MonBrightnessDown { spawn-sh "sudo brightnessctl set 5%-"; }
   XF86MonBrightnessUp { spawn-sh "sudo brightnessctl set +5%"; }
+
+  XF86AudioPlay { spawn-sh "playerctl play-pause"; }
+  XF86AudioPause { spawn-sh "playerctl play-pause"; }
+  XF86AudioNext { spawn-sh "playerctl next"; }
+  XF86AudioPrev { spawn-sh "playerctl previous"; }
 }
