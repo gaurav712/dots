@@ -8,14 +8,14 @@
 
   "custom/workspaces": {
     "format": "{}",
-    "exec": "~/.local/bin/niri-workspaces",
+    "exec": "if pgrep -x hyprland > /dev/null; then ~/.local/bin/hyprland-workspaces; elif pgrep -x niri > /dev/null; then ~/.local/bin/niri-workspaces; else echo '{\"text\": \"󰅴\", \"tooltip\": \"No WM detected\"}'; fi",
     "return-type": "json",
     "interval": 1
   },
 
   "custom/window-title": {
     "format": "{}",
-    "exec": "~/.local/bin/niri-window-title",
+    "exec": "if pgrep -x hyprland > /dev/null; then ~/.local/bin/hyprland-window-title; elif pgrep -x niri > /dev/null; then ~/.local/bin/niri-window-title; else echo '{\"text\": \"\"}'; fi",
     "return-type": "json",
     "interval": 1
   },

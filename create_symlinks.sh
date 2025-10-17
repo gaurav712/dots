@@ -118,6 +118,10 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/mako")
   targets+=("$HOME/.config/mako")
 
+  # hyprland
+  sources+=(".config/hypr")
+  targets+=("$HOME/.config/hypr")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")

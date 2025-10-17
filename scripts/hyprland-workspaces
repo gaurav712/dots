@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Get Hyprland workspaces using hyprctl
+workspaces=$(hyprctl workspaces 2>/dev/null)
+
+if [ $? -ne 0 ]; then
+    echo '{"text": "󰅴", "tooltip": "Hyprland not running"}'
+    exit 0
+fi
+
+# Get the currently focused workspace
+focused_workspace=$(hyprctl activeworkspace 2>/dev/null | grep -o 'workspace ID [0-9]\+' | grep -o '[0-9]\+')
+
+# Initialize workspace array (1-9)
+declare -a workspace_status
+for i in {1..9}; do
+    workspace_status[$i]="○"
+done
+
+# Parse workspaces output
+current_ws=""
+while IFS= read -r line; do
+    # Check if this line contains a workspace ID
+    if [[ $line =~ ^workspace\ ID\ ([0-9]+) ]]; then
+        current_ws="${BASH_REMATCH[1]}"
+    # Check if this workspace has windows
+    elif [[ $line =~ ^[[:space:]]*windows:\ ([0-9]+) ]]; then
+        window_count="${BASH_REMATCH[1]}"
+        if [ "$window_count" -gt 0 ] && [ -n "$current_ws" ]; then
+            workspace_status[$current_ws]="◉"
+        fi
+    fi
+done <<< "$workspaces"
+
+# Build the display text with active workspace highlighting
+workspace_text=""
+for i in {1..9}; do
+    if [ "$i" = "$focused_workspace" ]; then
+        # Highlight active workspace with a different symbol
+        workspace_text="${workspace_text}●"  # Active with windows
+    else
+        workspace_text="${workspace_text}${workspace_status[$i]}"
+    fi
+done
+
+echo "{\"text\": \"$workspace_text\", \"tooltip\": \"Active: $focused_workspace\"}"
