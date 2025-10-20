@@ -122,6 +122,14 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/hypr")
   targets+=("$HOME/.config/hypr")
 
+  # fontconfig
+  sources+=(".config/fontconfig")
+  targets+=("$HOME/.config/fontconfig")
+
+  # kitty
+  sources+=(".config/kitty")
+  targets+=("$HOME/.config/kitty")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")
