@@ -11,3 +11,7 @@ alias undervolt_cpu="sudo amdctl -gmc 0 -v 84 -f 168 -p 0"
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec dbus-launch hyprland
 fi
+
+# LM Studio
+export PATH="$PATH:$HOME/.lmstudio/bin"
+
