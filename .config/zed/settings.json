@@ -1,9 +1,38 @@
 {
+  "base_keymap": "VSCode",
+  "minimap": {
+    "show": "auto"
+  },
+  "file_types": {},
+  "icon_theme": "Zed (Default)",
   "agent": {
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
-    },
+      "provider": "lmstudio",
+      "model": "qwen/qwen2.5-coder-14b"
+    }
+  },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://localhost:11434",
+      "available_models": [
+        {
+          "name": "qwen2.5-coder",
+          "display_name": "qwen 2.5 coder 32K",
+          "max_tokens": 32768,
+          "supports_tools": true,
+          "supports_thinking": false,
+          "supports_images": true
+        },
+        {
+          "name": "deepseek-r1:1.5b",
+          "display_name": "deepseek-r1 1.5b 32K",
+          "max_tokens": 32768,
+          "supports_tools": false,
+          "supports_thinking": false,
+          "supports_images": true
+        }
+      ]
+    }
   },
   "features": {
     "edit_prediction_provider": "none"
@@ -19,7 +48,7 @@
     "font_size": 14
   },
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "Gruvbox Light",
     "dark": "Gruvbox Dark"
   }
