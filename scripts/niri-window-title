@@ -16,8 +16,8 @@ if [ -z "$title" ]; then
 fi
 
 # Truncate title if too long
-if [ ${#title} -gt 100 ]; then
-    title="${title:0:100}..."
+if [ ${#title} -gt 70 ]; then
+    title="${title:0:70}..."
 fi
 
 echo "{\"text\": \"$title\"}"
