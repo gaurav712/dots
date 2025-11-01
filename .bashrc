@@ -5,6 +5,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vol='pactl list sinks | grep Volume | sed -n 1p'
 alias delete_merged_branches='git branch --merged | grep -v "main\|master" | xargs git branch -d'
+alias castscr='scrcpy -Sf -b 8M --video-codec=av1 --render-driver=vulkan --max-fps=24 --max-size 1080'
 
 function discache() {
 
