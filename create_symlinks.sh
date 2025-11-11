@@ -130,6 +130,14 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/kitty")
   targets+=("$HOME/.config/kitty")
 
+  # GTK2
+  sources+=(".gtkrc-2.0")
+  targets+=("$HOME/.gtkrc-2.0")
+
+  # GTK3
+  sources+=(".config/gtk-3.0")
+  targets+=("$HOME/.config/gtk-3.0")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")
