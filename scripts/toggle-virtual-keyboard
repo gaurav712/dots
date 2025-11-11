@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill -s SIGRTMIN $(ps -C wvkbd-mobintl | tail -n 1 | awk '{ print $1 }')
