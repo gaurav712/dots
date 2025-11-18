@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -eu
+
+usage() {
+    printf "Usage: %s <archive-name> <file|dir>...\n" "$(basename "$0")" >&2
+    exit 1
+}
+
+[ $# -lt 2 ] && usage
+
+archive="$1"
+shift
+
+case "$archive" in
+    *.tar.bz2|*.tbz2) tar cvjf "$archive" "$@";;
+    *.tar.gz|*.tgz) tar cvzf "$archive" "$@";;
+    *.tar.xz|*.txz) tar cvJf "$archive" "$@";;
+    *.tar) tar cvf "$archive" "$@";;
+    *.zip) zip -r "$archive" "$@";;
+    *.7z) 7z a "$archive" "$@";;
+    *.gz) tar cvzf "$archive" "$@";; # default to tar.gz
+    *.bz2) tar cvjf "$archive" "$@";; # default to tar.bz2
+    *.xz) tar cvJf "$archive" "$@";; # default to tar.xz
+    *) printf "don't know how to archive that extension!\n" >&2; exit 1;;
+esac
+
