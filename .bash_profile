@@ -14,6 +14,6 @@ alias undervolt_cpu="sudo amdctl -gmc 0 -v 84 -f 168 -p 0"
   #exec dbus-launch hyprland
 #fi
 
-# LM Studio
-export PATH="$PATH:$HOME/.lmstudio/bin"
-
+# OpenCL AMD
+export ROCM_PATH=/opt/rocm
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
