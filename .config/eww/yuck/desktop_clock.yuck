@@ -31,16 +31,16 @@
   `date +%A | tr '[:lower:]' '[:upper:]'`)
 
 (defpoll time
-  :interval "60s"
+  :interval "1s"
   :initial `date +%H:%M`
   `date +%H:%M`)
 
 (defpoll weather
-  :interval "10s"
+  :interval "3600s"
   :initial "☀️"
   `curl wttr.in/ballia?format=3 | awk '{print $2}'`)
 
 (defpoll temp
-  :interval "10s"
+  :interval "3600s"
   :initial "0°C"
   `curl wttr.in/ballia?format=3 | awk '{print $3}' | cut -d "+" -f2`)

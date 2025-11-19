@@ -4,5 +4,5 @@ pkill eww
 eww daemon
 
 eww open desktop
-eww open hyprland
+#eww open hyprland
 
