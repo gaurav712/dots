@@ -74,6 +74,10 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/eww")
   targets+=("$HOME/.config/eww")
 
+  # fonts for eww
+  sources+=("fonts")
+  targets+=("$HOME/.local/share/fonts")
+
   # mpv media player
   sources+=(".config/mpv")
   targets+=("$HOME/.config/mpv")
