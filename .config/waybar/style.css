@@ -1,6 +1,6 @@
 * {
   font-family: monospace;
-  font-size: 13px;
+  font-size: 0.8rem;
   min-height: 0;
 }
 
@@ -13,20 +13,18 @@ window#waybar {
 
 .modules-right,
 .modules-left {
-  padding: 0px 16px;
+  padding: 0px 1rem;
 }
 
 /* Workspaces styling */
 #custom-workspaces {
-  font-size: 20px;
-  margin-top: -3px;
-  letter-spacing: 8px;
-  margin-right: 10px
+  font-size: 1.5rem;
+  margin-top: -0.25rem;
+  letter-spacing: 0.25rem;
+  margin-right: 0.5rem;
 }
 
 #custom-workspaces button {
-  padding: 0 8px;
-  margin: 0 2px;
   background-color: transparent;
   color: #928374;
   border-radius: 4px;
