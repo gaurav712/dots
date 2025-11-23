@@ -100,7 +100,7 @@ if [ "$machine" = "Linux" ]; then
 
   # linux scripts
   sources+=("scripts")
-  targets+=("$HOME/.local/bin")
+  targets+=("$HOME/.local/scripts")
 
   # wofi
   sources+=(".config/wofi")

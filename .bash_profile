@@ -1,7 +1,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 export EDITOR="nvim"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/scripts:$PATH"
 export QT_QPA_PLATFORM=xcb
 
 # Android
