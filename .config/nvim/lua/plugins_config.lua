@@ -22,6 +22,7 @@ require('telescope').setup({
       "--line-number",   -- Show line numbers
       "--column",        -- Show column numbers
       "--smart-case",    -- Smart case search
+      "--word-regexp",   -- Full word
 
       -- Exclude some patterns from search
       "--glob=!**/.git/*",
