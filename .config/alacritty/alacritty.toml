@@ -51,7 +51,7 @@ history = 0
 program = "/usr/bin/tmux"
 
 [window]
-opacity = 0.8
+opacity = 1.0
 
 [window.dimensions]
 columns = 150
