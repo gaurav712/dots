@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# To start dwm with restart functionality
+
+while true; do
+    dwm 2> /dev/null	# suppress errors
+done
