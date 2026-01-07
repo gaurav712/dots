@@ -12,6 +12,7 @@ map('n', '<leader>h', ':noh<CR>')
 map('n', '<leader>f', ':Telescope find_files<CR>')
 map('n', '<leader>/', ':Telescope live_grep<CR>')
 map('n', '<leader>b', ':Telescope buffers<CR>')
+map('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>')
 
 -- File Explorer
 map('n', '<leader>e', ':Yazi<CR>')
