@@ -1,60 +1,68 @@
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
-  -- Gruvbox
-  use 'sainnhe/gruvbox-material'
+vim.pack.add({
+  -- Colorscheme
+  "https://github.com/sainnhe/gruvbox-material",
 
   -- Navigation integration with tmux
-  use 'christoomey/vim-tmux-navigator'
+  "https://github.com/christoomey/vim-tmux-navigator",
 
-  -- Commments
-  use 'preservim/nerdcommenter'
+  -- Comments
+  "https://github.com/preservim/nerdcommenter",
 
   -- Git
-  use 'tpope/vim-fugitive'
-  use {'lewis6991/gitsigns.nvim'}
+  "https://github.com/tpope/vim-fugitive",
+  "https://github.com/lewis6991/gitsigns.nvim",
 
   -- Fuzzy finder
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  "https://github.com/nvim-mini/mini.pick",
 
   -- Statusline
-  use {'nvim-lualine/lualine.nvim'}
-
-  -- File Explorer
-  use {"mikavilpas/yazi.nvim"}
+  "https://github.com/nvim-lualine/lualine.nvim",
 
   -- Markdown
-  use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-  })
+  "https://github.com/iamcco/markdown-preview.nvim",
 
-  -- Completion
-  use {
-    'saghen/blink.cmp',
-    requires = { 'rafamadriz/friendly-snippets' },
+  -- Completion (dependencies first)
+  "https://github.com/rafamadriz/friendly-snippets",
+  "https://github.com/saghen/blink.cmp",
+})
 
-    config = function()
-      require('blink.cmp').setup({
-        keymap = { preset = 'default' },
+-- Helper function to find plugin directory
+local function find_plugin_dir(plugin_name)
+  local data_dir = vim.fn.stdpath('data')
+  local pattern = data_dir .. '/pack/pack/*/start/' .. plugin_name
+  local dirs = vim.fn.glob(pattern, false, true)
+  if #dirs > 0 then
+    return dirs[1]
+  end
+  return nil
+end
 
-        completion = {
-          documentation = { auto_show = true },
-        },
-
-        sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer' },
-        },
-
-        fuzzy = {
-          implementation = "lua",
-        },
-      })
+-- Install markdown-preview.nvim if needed
+local function install_markdown_preview()
+  local mkdp_dir = find_plugin_dir('markdown-preview.nvim')
+  if mkdp_dir and vim.fn.isdirectory(mkdp_dir) == 1 then
+    -- Check if already installed by looking for app directory
+    local app_dir = mkdp_dir .. '/app'
+    if vim.fn.isdirectory(app_dir) == 0 then
+      vim.notify("Installing markdown-preview.nvim...", vim.log.levels.INFO)
+      -- Use vim.schedule to ensure plugin is loaded
+      vim.schedule(function()
+        if vim.fn.exists('*mkdp#util#install') == 1 then
+          vim.fn["mkdp#util#install"]()
+        end
+      end)
     end
-  }
+  end
+end
+
+-- Run build commands after a short delay to ensure plugins are loaded
+vim.schedule(function()
+  install_markdown_preview()
 end)
+
+-- Handle build commands on PackChanged event
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function()
+    install_markdown_preview()
+  end,
+})
