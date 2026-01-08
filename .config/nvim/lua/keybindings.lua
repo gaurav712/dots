@@ -7,7 +7,19 @@ map('n', '<leader>h', ':noh<CR>')
 
 -- mini.pick stuff
 local MiniPick = require('mini.pick')
-map('n', '<leader>f', function() MiniPick.builtin.files() end)
+
+function PickAllFiles()
+  local results = vim.fn.systemlist(
+    "rg --files --hidden --glob '!.git'"
+  )
+  require("mini.pick").start({
+    source = {
+      items = results,
+    },
+  })
+end
+
+map('n', '<leader>f', PickAllFiles)
 map('n', '<leader>/', function() MiniPick.builtin.grep_live() end)
 map('n', '<leader>b', function() MiniPick.builtin.buffers() end)
 map('n', '<leader>j', function() MiniPick.builtin.jumps() end)
