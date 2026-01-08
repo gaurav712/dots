@@ -21,6 +21,11 @@ vim.pack.add({
   -- Markdown
   "https://github.com/iamcco/markdown-preview.nvim",
 
+  -- AI
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/yetone/avante.nvim",
+
   -- Completion (dependencies first)
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/saghen/blink.cmp",
