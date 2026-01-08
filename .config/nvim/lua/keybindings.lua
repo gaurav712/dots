@@ -18,3 +18,6 @@ map('n', '<leader>gs', ':Telescope git_status<CR>')
 -- LSP
 map('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>')
 map('n', '<leader>lw', ':Telescope lsp_dynamic_workspace_symbols<CR>')
+map('n', '<leader>le', function()
+  require('telescope.builtin').diagnostics({ bufnr = 0 })
+end)
