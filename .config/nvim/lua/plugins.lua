@@ -1,3 +1,17 @@
+-- Build hooks for plugins that need post-install steps
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+      vim.system({'make'}, {cwd = ev.data.path}):wait()
+    elseif name == 'markdown-preview.nvim' and (kind == 'install' or kind == 'update') then
+      if vim.fn.exists('*mkdp#util#install') == 1 then
+        vim.fn["mkdp#util#install"]()
+      end
+    end
+  end,
+})
+
 vim.pack.add({
   -- Colorscheme
   "https://github.com/sainnhe/gruvbox-material",
@@ -12,8 +26,10 @@ vim.pack.add({
   "https://github.com/tpope/vim-fugitive",
   "https://github.com/lewis6991/gitsigns.nvim",
 
-  -- Fuzzy finder
-  "https://github.com/nvim-mini/mini.pick",
+  -- Picker
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/nvim-telescope/telescope.nvim",
+  "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 
   -- Statusline
   "https://github.com/nvim-lualine/lualine.nvim",
@@ -23,45 +39,4 @@ vim.pack.add({
 
   -- Completion (dependencies first)
   "https://github.com/saghen/blink.cmp",
-})
-
--- Helper function to find plugin directory
-local function find_plugin_dir(plugin_name)
-  local data_dir = vim.fn.stdpath('data')
-  local pattern = data_dir .. '/pack/pack/*/start/' .. plugin_name
-  local dirs = vim.fn.glob(pattern, false, true)
-  if #dirs > 0 then
-    return dirs[1]
-  end
-  return nil
-end
-
--- Install markdown-preview.nvim if needed
-local function install_markdown_preview()
-  local mkdp_dir = find_plugin_dir('markdown-preview.nvim')
-  if mkdp_dir and vim.fn.isdirectory(mkdp_dir) == 1 then
-    -- Check if already installed by looking for app directory
-    local app_dir = mkdp_dir .. '/app'
-    if vim.fn.isdirectory(app_dir) == 0 then
-      vim.notify("Installing markdown-preview.nvim...", vim.log.levels.INFO)
-      -- Use vim.schedule to ensure plugin is loaded
-      vim.schedule(function()
-        if vim.fn.exists('*mkdp#util#install') == 1 then
-          vim.fn["mkdp#util#install"]()
-        end
-      end)
-    end
-  end
-end
-
--- Run build commands after a short delay to ensure plugins are loaded
-vim.schedule(function()
-  install_markdown_preview()
-end)
-
--- Handle build commands on PackChanged event
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function()
-    install_markdown_preview()
-  end,
 })
