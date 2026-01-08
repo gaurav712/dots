@@ -43,10 +43,6 @@ if [ "$machine" = "Linux" ]; then
 
   echo "Linux detected.."
 
-  # tmux
-  sources+=(".tmux.conf")
-  targets+=("$HOME/.tmux.conf")
-
   # X11
   sources+=(".xinitrc")
   targets+=("$HOME/.xinitrc")
@@ -157,10 +153,6 @@ elif [ "$machine" = "Mac" ]; then
   sources+=("mac/.zprofile")
   targets+=("$HOME/.zprofile")
 
-  # tmux
-  sources+=("mac/.tmux.conf")
-  targets+=("$HOME/.tmux.conf")
-
   # alacritty terminal
   sources+=("mac/.config/alacritty")
   targets+=("$HOME/.config/alacritty")
@@ -180,6 +172,10 @@ elif [ "$machine" = "Mac" ]; then
 fi
 
 # Configs common to both platforms
+
+# tmux
+sources+=(".tmux.conf")
+targets+=("$HOME/.tmux.conf")
 
 # pip package manager
 sources+=(".config/pip")
