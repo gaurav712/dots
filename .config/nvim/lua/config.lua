@@ -58,6 +58,9 @@ o.splitbelow = true
 -- Reduce the time Neovim waits for a change (in milliseconds)
 o.updatetime = 300
 
+-- Enable autoread to detect external file changes
+o.autoread = true
+
 -- Use treesitter for code folding
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
