@@ -5,9 +5,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
     if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
       vim.system({'make'}, {cwd = ev.data.path}):wait()
     elseif name == 'markdown-preview.nvim' and (kind == 'install' or kind == 'update') then
-      if vim.fn.exists('*mkdp#util#install') == 1 then
-        vim.fn["mkdp#util#install"]()
-      end
+      vim.system({'npx', '--yes', 'yarn', 'install'}, {cwd = ev.data.path .. '/app'}):wait()
     end
   end,
 })
@@ -33,6 +31,9 @@ vim.pack.add({
 
   -- Statusline
   "https://github.com/nvim-lualine/lualine.nvim",
+
+  -- Scrollbar
+  "https://github.com/lewis6991/satellite.nvim",
 
   -- Markdown
   "https://github.com/iamcco/markdown-preview.nvim",
