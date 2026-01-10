@@ -61,6 +61,15 @@ o.updatetime = 300
 -- Enable autoread to detect external file changes
 o.autoread = true
 
+vim.api.nvim_create_augroup("AutoReload", { clear = true })
+vim.api.nvim_create_autocmd(
+  { "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
+  {
+    group = "AutoReload",
+    command = "checktime",
+  }
+)
+
 -- Use treesitter for code folding
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
