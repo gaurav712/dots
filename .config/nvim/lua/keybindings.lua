@@ -13,7 +13,41 @@ map('n', '<leader>j', ':Telescope jumplist<CR>')
 
 -- Git
 map('n', '<leader>gb', ':Telescope git_branches<CR>')
-map('n', '<leader>gs', ':Telescope git_status<CR>')
+
+-- Jump between hunks
+vim.keymap.set('n', ']g', function()
+  return vim.o.diff and ']g' or '<cmd>Gitsigns next_hunk<CR>'
+end, { expr = true, silent = true })
+vim.keymap.set('n', '[g', function()
+  return vim.o.diff and '[g' or '<cmd>Gitsigns prev_hunk<CR>'
+end, { expr = true, silent = true })
+
+-- Popup what's changed in a hunk under cursor
+map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>')
+
+-- Stage/reset individual hunks under cursor in a file
+map('n', '<leader>gw', ':Gitsigns stage_hunk<CR>')
+map('n', '<leader>gr', ':Gitsigns reset_hunk<CR>')
+map('n', '<leader>gu', ':Gitsigns undo_stage_hunk<CR>')
+
+-- Stage/reset all hunks in a file
+map('n', '<leader>gS', ':Gitsigns stage_buffer<CR>')
+map('n', '<leader>gR', ':Gitsigns reset_buffer<CR>')
+map('n', '<leader>gU', ':Gitsigns reset_buffer_index<CR>')
+
+-- Open git status in interative window (similar to lazygit)
+map('n', '<leader>gg', ':Git<CR>')
+
+-- Show `git status output`
+map('n', '<leader>gs', ':Git status<CR>')
+
+-- Open commit window (creates commit after writing and saving commit msg)
+map('n', '<leader>gc', ':Git commit | startinsert<CR>')
+
+-- Diff and merge
+map('n', '<leader>gm', ':Git mergetool<CR>')
+map('n', '<leader>gd', ':Gvdiffsplit<CR>')
+map('n', '<leader>g_', ':Gdiffsplit<CR>')
 
 -- LSP
 map('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>')
