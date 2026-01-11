@@ -6,6 +6,14 @@ vim.lsp.config["tsserver"] = {
 
 vim.lsp.enable("tsserver")
 
+vim.lsp.config["biome"] = {
+    filetypes = { "astro", "css", "graphql", "html", "javascript", "javascriptreact", "json", "jsonc", "svelte", "typescript", "typescript.tsx", "typescriptreact", "vue" },
+    worksplace_required = true,
+    cmd = { "biome", "lsp-proxy" },
+}
+
+vim.lsp.enable('biome')
+
 -- Rust
 vim.lsp.config["rust-analyzer"] = {
   cmd = { "rust-analyzer" },
