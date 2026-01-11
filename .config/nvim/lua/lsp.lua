@@ -14,6 +14,24 @@ vim.lsp.config["biome"] = {
 
 vim.lsp.enable('biome')
 
+-- Golang
+vim.lsp.config["gopls"] = {
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_markers = { "go.mod", ".git" },
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
+
+vim.lsp.enable("gopls")
+
 -- Rust
 vim.lsp.config["rust-analyzer"] = {
   cmd = { "rust-analyzer" },
