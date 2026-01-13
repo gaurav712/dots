@@ -41,8 +41,11 @@ map('n', '<leader>gg', ':Git<CR>')
 -- Show `git status output`
 map('n', '<leader>gs', ':Git status<CR>')
 
--- Open commit window (creates commit after writing and saving commit msg)
-map('n', '<leader>gc', ':Git commit | startinsert<CR>')
+-- Open commit window in terminal (creates commit after writing and saving commit msg)
+map('n', '<leader>gc', function()
+  vim.cmd('terminal git commit')
+  vim.cmd('startinsert')
+end)
 
 -- Toggle git blame
 map('n', '<leader>gb', function()
