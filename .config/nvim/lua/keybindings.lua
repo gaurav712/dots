@@ -44,6 +44,18 @@ map('n', '<leader>gs', ':Git status<CR>')
 -- Open commit window (creates commit after writing and saving commit msg)
 map('n', '<leader>gc', ':Git commit | startinsert<CR>')
 
+-- Toggle git blame
+map('n', '<leader>gb', function()
+  local buf = vim.api.nvim_get_current_buf()
+  local ft = vim.bo[buf].filetype
+
+  if ft == 'gitsigns-blame' then
+    vim.cmd('bd')
+  else
+    vim.cmd('Gitsigns blame')
+  end
+end)
+
 -- Diff and merge
 map('n', '<leader>gm', ':Git mergetool<CR>')
 map('n', '<leader>gd', ':Gvdiffsplit<CR>')
