@@ -71,63 +71,59 @@ map('n', '<leader>le', function()
   require('telescope.builtin').diagnostics({ bufnr = 0 })
 end)
 
--- to preserve cursor-agent terminal session
-local cursor_term_buf = nil
-local cursor_term_win = nil
+-- to preserve opencode terminal session
+local opencode_term_buf = nil
+local opencode_term_win = nil
 
-local function toggle_cursor_cli_float()
+local function toggle_opencode_cli_float()
   local width  = math.floor(vim.o.columns * 0.8)
   local height = math.floor(vim.o.lines * 0.8)
   local row    = math.floor((vim.o.lines - height) / 2)
   local col    = math.floor((vim.o.columns - width) / 2)
 
   -- check if window exists and is valid
-  if cursor_term_win and vim.api.nvim_win_is_valid(cursor_term_win) then
+  if opencode_term_win and vim.api.nvim_win_is_valid(opencode_term_win) then
     -- if window exists, toggle visibility
-    vim.api.nvim_win_close(cursor_term_win, true)
-    cursor_term_win = nil
+    vim.api.nvim_win_close(opencode_term_win, true)
+    opencode_term_win = nil
     return
   end
 
   -- window doesn't exist, create or show it
-  if cursor_term_buf and vim.api.nvim_buf_is_valid(cursor_term_buf) then
+  if opencode_term_buf and vim.api.nvim_buf_is_valid(opencode_term_buf) then
     -- buffer exists, just open a new window for it
-    cursor_term_win = vim.api.nvim_open_win(cursor_term_buf, true, {
+    opencode_term_win = vim.api.nvim_open_win(opencode_term_buf, true, {
       relative = "editor",
       width = width,
       height = height,
       row = row,
       col = col,
-      style = "minimal",
-      border = "rounded",
     })
   else
-    -- first launch; create buffer and start cursor-agent
-    cursor_term_buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_option(cursor_term_buf, "bufhidden", "hide")
+    -- first launch; create buffer and start opencode
+    opencode_term_buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_option(opencode_term_buf, "bufhidden", "hide")
 
-    cursor_term_win = vim.api.nvim_open_win(cursor_term_buf, true, {
+    opencode_term_win = vim.api.nvim_open_win(opencode_term_buf, true, {
       relative = "editor",
       width = width,
       height = height,
       row = row,
       col = col,
-      style = "minimal",
-      border = "rounded",
     })
 
-    vim.fn.termopen({ "cursor-agent" })
+    vim.fn.termopen({ "opencode" })
   end
 
   vim.cmd("startinsert")
 
   -- hide window on <Esc>
-  vim.keymap.set("t", "<Esc>", function()
-    if cursor_term_win and vim.api.nvim_win_is_valid(cursor_term_win) then
-      vim.api.nvim_win_close(cursor_term_win, true)
-      cursor_term_win = nil
+  vim.keymap.set("t", "<leader>hh", function()
+    if opencode_term_win and vim.api.nvim_win_is_valid(opencode_term_win) then
+      vim.api.nvim_win_close(opencode_term_win, true)
+      opencode_term_win = nil
     end
-  end, { buffer = cursor_term_buf, silent = true })
+  end, { buffer = opencode_term_buf, silent = true })
 end
 
-map("n", "<leader>ac", toggle_cursor_cli_float)
+map("n", "<leader>hh", toggle_opencode_cli_float)
