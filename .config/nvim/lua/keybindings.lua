@@ -71,7 +71,18 @@ map('n', '<leader>le', function()
   require('telescope.builtin').diagnostics({ bufnr = 0 })
 end)
 
--- to preserve opencode terminal session
+-- LSP keybindings
+map('n', 'gd', vim.lsp.buf.definition)
+map('n', 'gr', vim.lsp.buf.references)
+map('n', 'gi', vim.lsp.buf.implementation)
+map('n', 'K', vim.lsp.buf.hover)
+map('n', '<leader>rn', vim.lsp.buf.rename)
+map('n', '<leader>ac', vim.lsp.buf.code_action)
+
+-- Show diagnostics in a floating window
+map('n', '<leader>e', vim.diagnostic.open_float)
+
+-- Open opencode in floating terminal
 local opencode_term_buf = nil
 local opencode_term_win = nil
 
