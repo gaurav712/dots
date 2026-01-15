@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# $ [directory] (git-branch)
+PS1='\[\e[1;32m\]$\[\e[0m\] \[\e[3m\][\W]\[\e[0m\]$(git branch --show-current 2>/dev/null | sed "s/.*/ (&)/") '
+
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vol='pactl list sinks | grep Volume | sed -n 1p'
