@@ -31,7 +31,7 @@ map('n', '<leader>gr', ':Gitsigns reset_hunk<CR>')
 map('n', '<leader>gu', ':Gitsigns undo_stage_hunk<CR>')
 
 -- Stage/reset all hunks in a file
-map('n', '<leader>gS', ':Gitsigns stage_buffer<CR>')
+map('n', '<leader>gW', ':Gitsigns stage_buffer<CR>')
 map('n', '<leader>gR', ':Gitsigns reset_buffer<CR>')
 map('n', '<leader>gU', ':Gitsigns reset_buffer_index<CR>')
 
@@ -64,7 +64,7 @@ map('n', '<leader>gm', ':Git mergetool<CR>')
 map('n', '<leader>gd', ':Gvdiffsplit<CR>')
 map('n', '<leader>g_', ':Gdiffsplit<CR>')
 
--- LSP
+-- LSP + telescope
 map('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>')
 map('n', '<leader>lw', ':Telescope lsp_dynamic_workspace_symbols<CR>')
 map('n', '<leader>le', function()
@@ -78,6 +78,7 @@ map('n', 'gi', vim.lsp.buf.implementation)
 map('n', 'K', vim.lsp.buf.hover)
 map('n', '<leader>rn', vim.lsp.buf.rename)
 map('n', '<leader>ac', vim.lsp.buf.code_action)
+map('n', '<leader>bf', vim.lsp.buf.format)
 
 -- Show diagnostics in a floating window
 map('n', '<leader>e', vim.diagnostic.open_float)
