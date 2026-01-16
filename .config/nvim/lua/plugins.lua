@@ -40,9 +40,6 @@ vim.pack.add({
   -- Statusline
   "https://github.com/nvim-lualine/lualine.nvim",
 
-  -- Scrollbar
-  "https://github.com/lewis6991/satellite.nvim",
-
   -- Markdown
   "https://github.com/iamcco/markdown-preview.nvim",
 
