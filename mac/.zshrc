@@ -18,14 +18,15 @@ function discache() {
   rm -rf $1 && ln -sf /dev/null $1
 }
 
-# for version control info in the prompt
+# $ [directory] (git-branch)
 precmd () {
-  autoload -Uz vcs_info # enable vcs_info
-  vcs_info # always load before displaying the prompt
-  zstyle ':vcs_info:*' formats '(%b)' # git(main)
+  setopt PROMPT_SUBST
+  autoload -Uz vcs_info
+  precmd() { vcs_info }
 
-  # the prompt
-  export PS1="%n@%m${vcs_info_msg_0_} %~ $ "
+  zstyle ':vcs_info:git:*' formats ' (%b)'
+
+  PROMPT='%F{green}$%f [%1~]${vcs_info_msg_0_} '
 }
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
