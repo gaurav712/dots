@@ -1,9 +1,0 @@
-#!/bin/sh
-
-killall pipewire
-killall pipewire-pulse
-killall wireplumber
-
-pipewire &
-/usr/bin/pipewire-pulse &
-/usr/bin/wireplumber &
