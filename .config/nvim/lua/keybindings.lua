@@ -78,7 +78,7 @@ map('n', 'gi', vim.lsp.buf.implementation)
 map('n', 'K', vim.lsp.buf.hover)
 map('n', '<leader>rn', vim.lsp.buf.rename)
 map('n', '<leader>ac', vim.lsp.buf.code_action)
-map('n', '<leader>bf', vim.lsp.buf.format)
+map('n', 'ff', vim.lsp.buf.format)
 
 -- Show diagnostics in a floating window
 map('n', '<leader>e', vim.diagnostic.open_float)
@@ -138,4 +138,4 @@ local function toggle_opencode_cli_float()
   end, { buffer = opencode_term_buf, silent = true })
 end
 
-map("n", "<leader>hh", toggle_opencode_cli_float)
+map("n", "hh", toggle_opencode_cli_float)
