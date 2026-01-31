@@ -19,7 +19,7 @@ window-margins: true
 window-margin-size: 6
 
 # Screen padding (outer gaps)
-screen-padding-top: 2
+screen-padding-top: 1
 screen-padding-left: -6
 screen-padding-right: -6
 screen-padding-bottom: 0
