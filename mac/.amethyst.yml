@@ -1,3 +1,69 @@
+enables-layout-hud: false
+enables-layout-hud-on-space-change: false
+
+layouts:
+  - tall
+  - fullscreen
+
+default-layout: tall
+
+focus-follows-mouse: false
+mouse-swaps-windows: false
+mouse-resizes-windows: false
+
+restore-layouts-on-launch: true
+disable-autoupdate: true
+
+# Inner gaps between windows
+window-margins: true
+window-margin-size: 6
+
+# Screen padding (outer gaps)
+screen-padding-top: 2
+screen-padding-left: -6
+screen-padding-right: -6
+screen-padding-bottom: 0
+
 floating:
+  - com.apple.finder
+  - com.apple.SystemSettings
+  - com.apple.systempreferences
+  - com.apple.ActivityMonitor
+  - com.apple.iCal
   - app: Simulator
+
+mod1:
+  - option
+
+mod2:
+  - option
+  - shift
+
+# Focus movement
+focus-up:
+  mod: mod1
+  key: k
+
+focus-down:
+  mod: mod1
+  key: j
+
+# Swap windows
+swap-up:
+  mod: mod2
+  key: k
+
+swap-down:
+  mod: mod2
+  key: j
+
+# Layout switching (like dwm monocle)
+cycle-layout:
+  mod: mod1
+  key: f
+
+# Floating toggle
+toggle-float:
+  mod: mod1
+  key: space
 
