@@ -130,6 +130,10 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/kitty")
   targets+=("$HOME/.config/kitty")
 
+  # Pipewire
+  sources+=(".config/pipewire")
+  targets+=("$HOME/.config/pipewire")
+
   # GTK2
   sources+=(".gtkrc-2.0")
   targets+=("$HOME/.gtkrc-2.0")
