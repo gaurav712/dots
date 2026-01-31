@@ -161,6 +161,10 @@ elif [ "$machine" = "Mac" ]; then
   sources+=("mac/Library/Application Support/Leader Key")
   targets+=("$HOME/Library/Application Support/Leader Key")
 
+  # Amethyst
+    sources+=("mac/.amethyst.yml")
+    targets+=("$HOME/.amethyst.yml")
+
   # local scripts
   sources+=("mac/.local/bin")
   targets+=("$HOME/.local/bin")
