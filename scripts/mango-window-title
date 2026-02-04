@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+title=$(mmsg -gc | head -n 1 | cut -d' ' -f3-)
+
+if [ ${#title} -gt 70 ]; then
+    title="${title:0:70}..."
+fi
+
+printf "$title"
