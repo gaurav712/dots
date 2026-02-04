@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+ICON_EMPTY="󱓼 "
+ICON_HAS_WINDOWS="󱨈 "
+ICON_ACTIVE="󱓻 "
+ICON_URGENT=" "
+
+# Default all tags to empty
+declare -A tags
+for i in {1..9}; do
+  tags[$i]="$ICON_EMPTY"
+done
+
+# Parse only valid tag lines
+while read -r monitor word tag state windows _; do
+  [[ $word != tag ]] && continue
+  [[ $tag -lt 1 || $tag -gt 9 ]] && continue
+
+  if [[ $state -eq 2 ]]; then
+    tags[$tag]="$ICON_URGENT"
+  elif [[ $state -eq 1 ]]; then
+    tags[$tag]="$ICON_ACTIVE"
+  elif [[ $windows -gt 0 ]]; then
+    tags[$tag]="$ICON_HAS_WINDOWS"
+  fi
+done < <(mmsg -gt 2>/dev/null)
+
+# Output bar string
+for i in {1..9}; do
+  printf "%s" "${tags[$i]}"
+done
+
