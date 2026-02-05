@@ -1,46 +1,41 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Get Hyprland workspaces using hyprctl
-workspaces=$(hyprctl workspaces 2>/dev/null)
+ICON_EMPTY="󱓼 "
+ICON_HAS_WINDOWS="󱨈 "
+ICON_ACTIVE="󱓻 "
 
-if [ $? -ne 0 ]; then
-    echo '{"text": "󰅴", "tooltip": "Hyprland not running"}'
-    exit 0
-fi
+# Get focused workspace ID
+focused_workspace=$(hyprctl activeworkspace 2>/dev/null \
+  | grep -o 'workspace ID [0-9]\+' \
+  | grep -o '[0-9]\+')
 
-# Get the currently focused workspace
-focused_workspace=$(hyprctl activeworkspace 2>/dev/null | grep -o 'workspace ID [0-9]\+' | grep -o '[0-9]\+')
-
-# Initialize workspace array (1-9)
-declare -a workspace_status
+# Initialize tags 1–9 as empty
+declare -A tags
 for i in {1..9}; do
-    workspace_status[$i]="○"
+  tags[$i]="$ICON_EMPTY"
 done
 
-# Parse workspaces output
+# Parse workspace info
 current_ws=""
 while IFS= read -r line; do
-    # Check if this line contains a workspace ID
-    if [[ $line =~ ^workspace\ ID\ ([0-9]+) ]]; then
-        current_ws="${BASH_REMATCH[1]}"
-    # Check if this workspace has windows
-    elif [[ $line =~ ^[[:space:]]*windows:\ ([0-9]+) ]]; then
-        window_count="${BASH_REMATCH[1]}"
-        if [ "$window_count" -gt 0 ] && [ -n "$current_ws" ]; then
-            workspace_status[$current_ws]="◉"
-        fi
+  # Match workspace ID
+  if [[ $line =~ ^workspace\ ID\ ([0-9]+) ]]; then
+    current_ws="${BASH_REMATCH[1]}"
+  # Match window count
+  elif [[ $line =~ ^[[:space:]]*windows:\ ([0-9]+) ]]; then
+    windows="${BASH_REMATCH[1]}"
+    if [[ -n $current_ws && $windows -gt 0 ]]; then
+      tags[$current_ws]="$ICON_HAS_WINDOWS"
     fi
-done <<< "$workspaces"
+  fi
+done < <(hyprctl workspaces 2>/dev/null)
 
-# Build the display text with active workspace highlighting
-workspace_text=""
+# Mark active workspace (overrides other states)
+if [[ -n $focused_workspace ]]; then
+  tags[$focused_workspace]="$ICON_ACTIVE"
+fi
+
 for i in {1..9}; do
-    if [ "$i" = "$focused_workspace" ]; then
-        # Highlight active workspace with a different symbol
-        workspace_text="${workspace_text}●"  # Active with windows
-    else
-        workspace_text="${workspace_text}${workspace_status[$i]}"
-    fi
+  printf "%s" "${tags[$i]}"
 done
 
-echo "{\"text\": \"$workspace_text\", \"tooltip\": \"Active: $focused_workspace\"}"
