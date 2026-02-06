@@ -1,3 +1,3 @@
 #!/bin/sh
-#ffmpeg -y -device /dev/dri/card1 -f kmsgrab -i - -vf 'hwmap=derive_device=vaapi,scale_vaapi=format=nv12' -c:v hevc_vaapi -qp 24 "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mkv"
-wf-recorder -Dyf "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mkv"
+
+wl-screenrec --codec hevc --bitrate "15 MB" --audio --audio-device wl-screenrec-input.monitor --filename "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mov"
