@@ -142,6 +142,14 @@ if [ "$machine" = "Linux" ]; then
   sources+=(".config/gtk-3.0")
   targets+=("$HOME/.config/gtk-3.0")
 
+  # xdg-desktop-portal
+  sources+=(".config/xdg-desktop-portal")
+  targets+=("$HOME/.config/xdg-desktop-portal")
+
+  # xdg-desktop-portal-wlr
+  sources+=(".config/xdg-desktop-portal-wlr")
+  targets+=("$HOME/.config/xdg-desktop-portal-wlr")
+
   # background image
   sources+=("bg.jpg")
   targets+=("$HOME/.config/bg")
