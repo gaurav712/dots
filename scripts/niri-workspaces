@@ -1,29 +1,55 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Get niri workspaces using niri msg
-workspaces=$(niri msg workspaces 2>/dev/null)
+ICON_EMPTY="󱓼 "
+ICON_HAS_WINDOWS="󱨈 "
+ICON_ACTIVE="󱓻 "
 
-if [ $? -ne 0 ]; then
-    echo '{"text": "󰅴", "tooltip": "Niri not running"}'
-    exit 0
-fi
+# ---------- get workspaces ----------
+workspaces=$(niri msg workspaces 2>/dev/null) || {
+  echo "󰅴 "
+  exit 0
+}
 
-# Parse workspaces in one pass - extract active workspace and build display
-active_workspace=""
-workspace_text=""
+declare -A tags
+declare -A window_count
+workspace_ids=()
 
+# ---------- collect workspace IDs + active ----------
+active_ws=""
 while IFS= read -r line; do
-    # Check if this line contains a workspace number
-    if [[ $line =~ ^[[:space:]]*\*?[[:space:]]*([0-9]+) ]]; then
-        ws="${BASH_REMATCH[1]}"
-        # Check if this is the active workspace (has asterisk)
-        if [[ $line =~ ^[[:space:]]*\* ]]; then
-            active_workspace="$ws"
-            workspace_text="${workspace_text}●"
-        else
-            workspace_text="${workspace_text}○"
-        fi
-    fi
+  if [[ $line =~ ^[[:space:]]*(\*)?[[:space:]]*([0-9]+) ]]; then
+    ws="${BASH_REMATCH[2]}"
+    workspace_ids+=("$ws")
+    tags[$ws]="$ICON_EMPTY"
+    window_count[$ws]=0
+    [[ -n "${BASH_REMATCH[1]}" ]] && active_ws="$ws"
+  fi
 done <<< "$workspaces"
 
-echo "{\"text\": \"$workspace_text\", \"tooltip\": \"Active: $active_workspace\"}"
+# ---------- count windows (robust) ----------
+while IFS= read -r ws; do
+  ((window_count[$ws]++))
+done < <(
+  niri msg windows 2>/dev/null |
+  grep -oE 'Workspace ID:[[:space:]]*[0-9]+' |
+  grep -oE '[0-9]+'
+)
+
+# ---------- mark non-empty ----------
+for ws in "${workspace_ids[@]}"; do
+  if [[ ${window_count[$ws]:-0} -gt 0 ]]; then
+    tags[$ws]="$ICON_HAS_WINDOWS"
+  fi
+done
+
+# ---------- mark active (override) ----------
+[[ -n $active_ws ]] && tags[$active_ws]="$ICON_ACTIVE"
+
+# ---------- output (numeric order) ----------
+IFS=$'\n' sorted=($(sort -n <<<"${workspace_ids[*]}"))
+unset IFS
+
+for ws in "${sorted[@]}"; do
+  printf "%s" "${tags[$ws]}"
+done
+

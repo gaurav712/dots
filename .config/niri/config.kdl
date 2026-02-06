@@ -1,6 +1,6 @@
 input {
-  mod-key "Alt"
-  mod-key-nested  "Super"
+  mod-key "Super"
+  mod-key-nested  "Alt"
 
   touchpad {
     tap
@@ -45,7 +45,7 @@ output "eDP-1" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
   // Set gaps around windows in logical pixels.
-  gaps 6
+  gaps 1
 
   // When to center a column when changing focus, options are:
   // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -64,7 +64,7 @@ layout {
   default-column-width { proportion 0.67; }
 
   focus-ring {
-    width 1.5
+    width 1
     active-color "#ebdbb2"
   }
 
@@ -74,16 +74,18 @@ layout {
 }
 
 spawn-at-startup "swww-daemon"
-spawn-at-startup "start-pipewire"
-spawn-at-startup "waybar"
-spawn-at-startup "start-xdg-desktop-portal"
+spawn-at-startup "pipewire"
+spawn-at-startup "pipewire-pulse"
+spawn-at-startup "wireplumber"
+spawn-at-startup "desktop-thingy -b ~/.config/bg"
+//spawn-at-startup "start-xdg-desktop-portal"
 spawn-at-startup "syncthing"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 spawn-sh-at-startup "sudo brightnessctl set 20%"
-spawn-sh-at-startup "swww img ~/config/bg"
-spawn-sh-at-startup "sudo /usr/lib/iio-sensor-proxy"
-spawn-sh-at-startup "sleep 3 && exec rot8"
+//spawn-sh-at-startup "swww img ~/config/bg"
+//spawn-sh-at-startup "sudo /usr/lib/iio-sensor-proxy"
+//spawn-sh-at-startup "sleep 3 && exec rot8"
 
 hotkey-overlay {
   skip-at-startup
@@ -136,7 +138,7 @@ window-rule {
   focus-ring {
     off
   }
-  geometry-corner-radius 12
+  geometry-corner-radius 0
   clip-to-geometry true
 }
 
@@ -158,13 +160,13 @@ window-rule {
 }
 
 window-rule {
-  geometry-corner-radius 12
+  geometry-corner-radius 0
   clip-to-geometry true
 }
 
 binds {
   Mod+Shift+Return { spawn "alacritty"; }
-  Mod+P { spawn-sh "wofi --show drun"; }
+  Mod+P { spawn-sh "launcher"; }
   Mod+Super+L { spawn "swaylock"; }
 
   Mod+O repeat=false { toggle-overview; }
