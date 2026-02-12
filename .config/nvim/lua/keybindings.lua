@@ -2,6 +2,53 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
+local prettier_filetypes = {
+  javascript = true,
+  javascriptreact = true,
+  typescript = true,
+  typescriptreact = true,
+  ["typescript.tsx"] = true,
+  html = true,
+  css = true,
+  scss = true,
+  less = true,
+  markdown = true,
+  ["markdown.mdx"] = true,
+  json = true,
+  jsonc = true,
+  yaml = true,
+  graphql = true,
+}
+
+local function format_buffer()
+  local buf = vim.api.nvim_get_current_buf()
+  local ft = vim.bo[buf].filetype
+  local filename = vim.api.nvim_buf_get_name(buf)
+
+  -- if filetype is not prettier-supported
+  if not prettier_filetypes[ft] then
+    vim.lsp.buf.format()
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  local content = table.concat(lines, '\n')
+
+  local result = vim.fn.system({
+    'prettier',
+    '--stdin-filepath',
+    filename,
+  }, content)
+
+  if vim.v.shell_error ~= 0 then
+    vim.notify('Prettier error: ' .. result, vim.log.levels.ERROR)
+    return
+  end
+
+  local formatted_lines = vim.split(result, '\n')
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, formatted_lines)
+end
+
 map('n', '<leader>qq', ':bw!<CR>')
 map('n', '<leader>h', ':noh<CR>')
 
@@ -78,7 +125,15 @@ map('n', 'gi', vim.lsp.buf.implementation)
 map('n', 'K', vim.lsp.buf.hover)
 map('n', '<leader>rn', vim.lsp.buf.rename)
 map('n', '<leader>ac', vim.lsp.buf.code_action)
-map('n', 'ff', vim.lsp.buf.format)
+map('n', 'ff', format_buffer)
 
 -- Show diagnostics in a floating window
 map('n', '<leader>e', vim.diagnostic.open_float)
+
+-- Format on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.{ts,tsx,js,jsx,html,css,scss,less,md,mdx,json,jsonc,yaml,yml,graphql,gql}',
+  callback = function()
+    format_buffer()
+  end,
+})
