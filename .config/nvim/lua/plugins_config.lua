@@ -2,13 +2,11 @@ local g = vim.g
 local o = vim.o
 
 -- Treesitter
-require('nvim-treesitter').setup {
+require("nvim-treesitter.configs").setup({
   ensure_installed = { "c", "cpp", "javascript", "typescript", "tsx", "go", "rust", "lua", "markdown", "markdown_inline", "json", "html", "css", "bash", "yaml", "toml" },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
+  highlight = { enable = true },
+  indent = { enable = true },
+})
 
 -- Colorscheme
 g.gruvbox_material_background='hard'
