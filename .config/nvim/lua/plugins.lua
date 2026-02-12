@@ -43,6 +43,9 @@ vim.pack.add({
   -- Markdown
   "https://github.com/iamcco/markdown-preview.nvim",
 
+  -- Indentation detection
+  "https://github.com/tpope/vim-sleuth",
+
   -- Completion (dependencies first)
   "https://github.com/saghen/blink.cmp",
   "https://github.com/github/copilot.vim"

@@ -6,7 +6,6 @@ g.mapleader = ' '
 -- Editor
 o.fileencoding = 'utf-8'        -- Use UTF-8 encoding for files
 o.hidden = true           -- Allow switching between buffers without saving the current buffer
-o.expandtab = true        -- Use spaces instead of tabs
 o.cindent = true          -- Enable C-style indentation
 
 -- UI
@@ -21,10 +20,8 @@ o.hlsearch = true         -- Highlight search matches
 o.incsearch = true        -- Show matches as you type
 o.wrap = true             -- Wrap long lines
 o.textwidth = 300         -- Maximum width for text wrapping (set very high)
-o.tabstop = 4             -- Number of spaces for a tab character
 o.smarttab = true         -- Insert spaces when pressing <Tab> in insert mode
 o.autoindent = true       -- Automatically indent new lines
-o.shiftwidth = 4          -- Use the value of 'tabstop' for auto-indentation
 o.softtabstop = -1        -- If negative, use the value of 'shiftwidth' for <Tab>/<BS>
 o.list = true             -- Show invisible characters
 o.scrolloff = 8           -- Minimum number of lines to keep above and below the cursor
