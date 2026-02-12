@@ -130,10 +130,3 @@ map('n', 'ff', format_buffer)
 -- Show diagnostics in a floating window
 map('n', '<leader>e', vim.diagnostic.open_float)
 
--- Format on save
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.{ts,tsx,js,jsx,html,css,scss,less,md,mdx,json,jsonc,yaml,yml,graphql,gql}',
-  callback = function()
-    format_buffer()
-  end,
-})
