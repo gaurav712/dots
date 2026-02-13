@@ -22,9 +22,6 @@ vim.pack.add({
   -- Colorscheme
   "https://github.com/sainnhe/gruvbox-material",
 
-  -- Navigation integration with tmux
-  "https://github.com/christoomey/vim-tmux-navigator",
-
   -- Comments
   "https://github.com/preservim/nerdcommenter",
 
