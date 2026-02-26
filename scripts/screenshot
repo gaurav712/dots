@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if grim -g "$(slurp)" - | wl-copy; then
+    notify-send "Screenshot" "Area copied to clipboard!" --icon=camera
+else
+    notify-send "Screenshot" "Cancelled or failed." --icon=dialog-error
+fi
