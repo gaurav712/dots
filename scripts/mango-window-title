@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
+# Usage: mango-window-title [monitor_name]
 
-title=$(mmsg -gc | head -n 1 | cut -d' ' -f3-)
+MONITOR="${1:-}"
+
+if [[ -n "$MONITOR" ]]; then
+    title=$(mmsg -gc 2>/dev/null | awk -v mon="$MONITOR" '$1 == mon && $2 == "title" {print substr($0, length($1)+length($2)+3); exit}')
+else
+    title=$(mmsg -gc 2>/dev/null | awk '$2 == "title" {print substr($0, length($1)+length($2)+3); exit}')
+fi
 
 if [ ${#title} -gt 70 ]; then
     title="${title:0:70}..."
