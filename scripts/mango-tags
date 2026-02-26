@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+# Usage: mango-tags [monitor_name]
+
+MONITOR="${1:-}"
 
 ICON_EMPTY="󱓼 "
 ICON_HAS_WINDOWS="󱨈 "
 ICON_ACTIVE="󱓻 "
-ICON_URGENT=" "
+ICON_URGENT=" "
 
 # Default all tags to empty
 declare -A tags
@@ -12,9 +15,10 @@ for i in {1..9}; do
 done
 
 # Parse only valid tag lines
-while read -r monitor word tag state windows _; do
+while read -r mon word tag state windows _; do
   [[ $word != tag ]] && continue
   [[ $tag -lt 1 || $tag -gt 9 ]] && continue
+  [[ -n "$MONITOR" && "$mon" != "$MONITOR" ]] && continue  # filter by monitor
 
   if [[ $state -eq 2 ]]; then
     tags[$tag]="$ICON_URGENT"
@@ -29,4 +33,3 @@ done < <(mmsg -gt 2>/dev/null)
 for i in {1..9}; do
   printf "%s" "${tags[$i]}"
 done
-
