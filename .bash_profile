@@ -2,7 +2,6 @@
 
 export EDITOR="nvim"
 export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
-export QT_QPA_PLATFORM=xcb
 
 # Android
 export ANDROID_HOME="$HOME/Android/Sdk"
