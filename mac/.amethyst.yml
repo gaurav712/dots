@@ -19,10 +19,10 @@ window-margins: true
 window-margin-size: 6
 
 # Screen padding (outer gaps)
-screen-padding-top: 1
+screen-padding-top: -6
 screen-padding-left: -6
 screen-padding-right: -6
-screen-padding-bottom: 0
+screen-padding-bottom: -6
 
 floating:
   - com.apple.finder
