@@ -1,3 +1,4 @@
 #!/bin/sh
 
-wl-screenrec --codec hevc --bitrate "15 MB" --audio --audio-device wl-screenrec-input.monitor --filename "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mov"
+wl-screenrec --codec hevc --bitrate "25 MB" --filename "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mov"
+#wl-screenrec --codec hevc --bitrate "25 MB" --audio --audio-device wl-screenrec-input.monitor --filename "$HOME/Videos/$(date +'%d-%m-%Y_%H-%M-%S').mov"
