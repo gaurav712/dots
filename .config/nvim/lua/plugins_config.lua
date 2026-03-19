@@ -88,3 +88,6 @@ require('blink.cmp').setup({
   },
 })
 
+-- autopairs
+require("nvim-autopairs").setup {}
+

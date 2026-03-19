@@ -45,5 +45,7 @@ vim.pack.add({
 
   -- Completion (dependencies first)
   "https://github.com/saghen/blink.cmp",
-  "https://github.com/github/copilot.vim"
+
+  -- Auto pairs
+  "https://github.com/windwp/nvim-autopairs",
 })
