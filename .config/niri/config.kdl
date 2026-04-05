@@ -10,52 +10,29 @@ input {
     middle-emulation
   }
 
-  mouse {
-    // off
-    // natural-scroll
-    // accel-speed 0.2
-    // accel-profile "flat"
-    // scroll-method "no-scroll"
-  }
-
   tablet {
-    map-to-output "eDP-1"
-  }
-
-  touch {
     map-to-output "eDP-1"
   }
 
   focus-follows-mouse
 }
 
-// Cursor configuration
 cursor {
   hide-when-typing
   hide-after-inactive-ms 6000
+  xcursor-theme "Breeze_Default"
 }
 
 output "eDP-1" {
   mode "1920x1080@60"
-  scale 1.25
+  scale 1.2
 }
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Layout
 layout {
-  // Set gaps around windows in logical pixels.
   gaps 1
 
-  // When to center a column when changing focus, options are:
-  // - "never", default behavior, focusing an off-screen column will keep at the left
-  //   or right edge of the screen.
-  // - "always", the focused column will always be centered.
-  // - "on-overflow", focusing a column will center it if it doesn't fit
-  //   together with the previously focused column.
   center-focused-column "never"
 
-  // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
   preset-column-widths {
     proportion 0.67
     proportion 0.5
@@ -73,17 +50,15 @@ layout {
   }
 }
 
-spawn-at-startup "swww-daemon"
 spawn-at-startup "pipewire"
 spawn-at-startup "pipewire-pulse"
 spawn-at-startup "wireplumber"
 spawn-at-startup "desktop-thingy -b ~/.config/bg"
-//spawn-at-startup "start-xdg-desktop-portal"
 spawn-at-startup "syncthing"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 spawn-sh-at-startup "sudo brightnessctl set 20%"
-//spawn-sh-at-startup "swww img ~/config/bg"
+spawn-sh-at-startup "desktop-thingy -b ~/config/bg"
 //spawn-sh-at-startup "sudo /usr/lib/iio-sensor-proxy"
 //spawn-sh-at-startup "sleep 3 && exec rot8"
 
@@ -95,16 +70,9 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-layer-rule {
-  match namespace="waybar"
-  match at-startup=true
-  opacity 0.99
-}
-
 window-rule {
   match app-id="brave-browser"
   default-column-width { proportion 1.0; }
-  scroll-factor 0.15
 }
 
 window-rule {
@@ -151,14 +119,6 @@ window-rule {
   }
 }
 
-/-window-rule {
-  match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-  match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-  block-out-from "screen-capture"
-  block-out-from "screencast"
-}
-
 window-rule {
   geometry-corner-radius 0
   clip-to-geometry true
@@ -167,25 +127,16 @@ window-rule {
 binds {
   Mod+Shift+Return { spawn "alacritty"; }
   Mod+P { spawn-sh "launcher"; }
-  Mod+Super+L { spawn "swaylock"; }
 
   Mod+O repeat=false { toggle-overview; }
 
   Mod+Q repeat=false { close-window; }
 
-  Mod+Left  { focus-column-left; }
-  Mod+Down  { focus-window-down; }
-  Mod+Up    { focus-window-up; }
-  Mod+Right { focus-column-right; }
   Mod+H     { focus-column-left; }
   Mod+J     { focus-window-down; }
   Mod+K     { focus-window-up; }
   Mod+L     { focus-column-right; }
 
-  Mod+Ctrl+Left  { move-column-left; }
-  Mod+Ctrl+Down  { move-window-down; }
-  Mod+Ctrl+Up    { move-window-up; }
-  Mod+Ctrl+Right { move-column-right; }
   Mod+Ctrl+H     { move-column-left; }
   Mod+Ctrl+J     { move-window-down; }
   Mod+Ctrl+K     { move-window-up; }
@@ -215,6 +166,7 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
+
   Mod+Shift+1 { move-column-to-workspace 1; }
   Mod+Shift+2 { move-column-to-workspace 2; }
   Mod+Shift+3 { move-column-to-workspace 3; }
