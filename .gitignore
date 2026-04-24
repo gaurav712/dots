@@ -1,5 +1,6 @@
 .uuid
 .DS_Store
+.config/bg
 .config/zed/prompts
 .config/zed/conversations
 .config/nvim/plugin
