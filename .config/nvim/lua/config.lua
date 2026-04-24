@@ -69,9 +69,8 @@ vim.api.nvim_create_autocmd(
   }
 )
 
--- Use treesitter for code folding
-o.foldmethod = 'expr'
-o.foldexpr = 'nvim_treesitter#foldexpr()'
+-- Use indent for code folding
+o.foldmethod = 'indent'
 o.foldenable = true       -- Ensure folding is enabled
 o.foldlevel = 99          -- Start with all folds open
 
