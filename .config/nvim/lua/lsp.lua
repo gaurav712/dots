@@ -18,7 +18,7 @@ vim.lsp.enable("pyright")
 
 -- Typescript
 vim.lsp.config["tsserver"] = {
-  cmd = { "typescript-language-server", "--stdio" },
+  cmd = { "tsgo", "--lsp", "--stdio" },
   filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
 }
 
