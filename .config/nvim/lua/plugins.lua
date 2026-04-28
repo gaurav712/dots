@@ -38,6 +38,7 @@ vim.pack.add({
   "https://github.com/tpope/vim-sleuth",
 
   -- Completion (dependencies first)
+  "https://github.com/saghen/blink.lib",
   "https://github.com/saghen/blink.cmp",
 
   -- Auto pairs
