@@ -13,6 +13,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 vim.pack.add({
+  -- Treesitter
+  "https://github.com/romus204/tree-sitter-manager.nvim",
+
   -- Colorscheme
   "https://github.com/sainnhe/gruvbox-material",
 

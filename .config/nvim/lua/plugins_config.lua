@@ -1,6 +1,8 @@
 local g = vim.g
 local o = vim.o
 
+require("tree-sitter-manager").setup({})
+
 -- Colorscheme
 g.gruvbox_material_background='hard'
 g.gruvbox_contrast_dark='hard'
