@@ -43,7 +43,4 @@ vim.pack.add({
 
   -- Auto pairs
   "https://github.com/windwp/nvim-autopairs",
-
-  -- Auto pairs
-  "https://github.com/gaurav712/local-ai-completion.nvim",
 })
